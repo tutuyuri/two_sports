@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Two Sports</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="loading.css">
+</head>
+<body>
+    <main class="login-page">
+        <section class="login-box" aria-labelledby="titulo-login">
+            <h1 id="titulo-login">Two Sports</h1>
+            <p>Entre na sua conta</p>
+
+            <form id="login-form" novalidate>
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email" required>
+
+                <label for="senha">Senha</label>
+                <div class="campo-senha">
+                    <input id="senha" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required minlength="6">
+                    <button class="alternar-senha" type="button" data-toggle-password="senha" aria-label="Mostrar senha">Mostrar</button>
+                </div>
+
+                <p class="mensagem-formulario" data-form-message role="status" aria-live="polite"></p>
+                <button type="submit">Entrar</button>
+            </form>
+
+            <div class="links">
+                <a href="cadastro.html">Criar conta</a>
+            </div>
+            <a href="TWO SPORTS.HTML" class="voltar">Voltar para a loja</a>
+        </section>
+    </main>
+    <script src="loading.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sports</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="produtos.css">
+    <link rel="stylesheet" href="loading.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho__conteudo">
+            <a class="logo" href="TWO SPORTS.HTML">Two Sports</a>
+
+            <nav class="menu" aria-label="Menu principal">
+                <a href="TWO SPORTS.HTML">In&iacute;cio</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="carrinho.html" class="menu__carrinho">Carrinho <span class="contador-carrinho" data-cart-count>0</span></a>
+                <a href="login.html">Login</a>
+                <a href="cadastro.html">Cadastro</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="destaque">
+            <div class="destaque__texto">
+                <span class="etiqueta">Loja de esportes</span>
+                <h1>Equipamentos para treinar, jogar e evoluir.</h1>
+                <p>
+                    Produtos selecionados para futebol, corrida e treinos do dia a dia,
+                    com foco em conforto, desempenho e qualidade.
+                </p>
+                <a class="btn btn--principal" href="produtos.html">Ver produtos</a>
+            </div>
+        </section>
+
+        <section class="secao" id="produtos">
+            <div class="secao__cabecalho">
+                <span class="etiqueta">Produtos</span>
+                <h2>Mais procurados</h2>
+            </div>
+
+            <div class="produtos">
+                <article class="card">
+                    <img
+                        src="https://images.tcdn.com.br/img/img_prod/1376235/bola_futebol_de_campo_nike_cbf_academy_su23_2049_2_02f38b79e4b77fc181bc34aaeffd9114.jpg"
+                        alt="Bola de futebol Nike CBF Academy"
+                    >
+
+                    <div class="card__conteudo">
+                        <h3>Bola de Futebol</h3>
+                        <p>Bola oficial para treinos e partidas com excelente qualidade.</p>
+                        <a href="produtos.html" class="btn">Comprar</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/70fe04a3-29f5-4812-b8d6-0c5d59c04202/PHANTOM+6+LOW+ELITE+FG.png"
+                        alt="Chuteira Nike branca com detalhes em azul e rosa"
+                    >
+
+                    <div class="card__conteudo">
+                        <h3>Chuteira Nike</h3>
+                        <p>Chuteira leve e confortável para futebol de campo e society.</p>
+                        <a href="produtos.html" class="btn">Comprar</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 Two Sports. Todos os direitos reservados.</p>
+    </footer>
+    <script src="loading.js"></script>
+    <script src="carrinho.js"></script>
+</body>
+</html>

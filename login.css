@@ -1,0 +1,190 @@
+:root {
+    --azul: #1e3a8a;
+    --azul-escuro: #162d69;
+    --branco: #fff;
+    --cinza: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        linear-gradient(rgba(30, 58, 138, 0.86), rgba(17, 24, 39, 0.82)),
+        url("img/esporte.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.login-box {
+    width: min(100%, 380px);
+    padding: 34px;
+    border-radius: 8px;
+    background-color: var(--branco);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.28);
+    text-align: center;
+}
+
+.login-box h1 {
+    margin-bottom: 10px;
+    color: var(--azul);
+    font-size: 2rem;
+}
+
+.login-box p {
+    margin-bottom: 24px;
+    color: var(--cinza);
+}
+
+.cadastro-box {
+    width: min(100%, 430px);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+label {
+    color: #374151;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: 3px solid rgba(30, 58, 138, 0.18);
+    border-color: var(--azul);
+}
+
+.campo-senha {
+    position: relative;
+}
+
+.campo-senha input {
+    padding-right: 82px;
+}
+
+.alternar-senha {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    min-height: auto;
+    margin: 0;
+    padding: 6px 8px;
+    transform: translateY(-50%);
+    background: transparent;
+    color: var(--azul);
+    font-size: 0.8rem;
+}
+
+.alternar-senha:hover {
+    background: #e8eefc;
+}
+
+.mensagem-formulario {
+    min-height: 20px;
+    margin: 4px 0 0 !important;
+    color: #166534 !important;
+    font-size: 0.88rem;
+    text-align: left;
+}
+
+.mensagem-formulario.erro {
+    color: #b91c1c !important;
+}
+
+button {
+    min-height: 44px;
+    margin-top: 8px;
+    border: 0;
+    border-radius: 6px;
+    background-color: var(--azul);
+    color: var(--branco);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: var(--azul-escuro);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(30, 58, 138, 0.35);
+    outline-offset: 2px;
+}
+
+.links {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.links a,
+.voltar {
+    color: var(--azul);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.links a:hover,
+.voltar:hover {
+    text-decoration: underline;
+}
+
+.links span {
+    color: var(--cinza);
+    font-size: 0.9rem;
+}
+
+.voltar {
+    display: inline-block;
+    margin-top: 22px;
+}
+
+@media (max-width: 420px) {
+    .login-box {
+        padding: 26px 22px;
+    }
+
+    .links {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .login-box {
+        animation: aparecer 0.35s ease-out;
+    }
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Two Sports</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="produtos.css">
+    <link rel="stylesheet" href="loading.css">
+
+    <nav class="menu" aria-label="Menu principal">
+        <a href="TWO SPORTS.HTML">In&iacute;cio</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="carrinho.html" class="menu__carrinho">
+            Carrinho <span class="contador-carrinho" data-cart-count>0</span>
+        </a>
+        <a href="login.html">Login</a>
+        <a href="cadastro.html">Cadastro</a>
+    </nav>
+    </div>
+    </header>
+
+    <main>
+        <section class="secao">
+            <div class="secao__cabecalho catalogo-intro">
+                <span class="etiqueta">Cat&aacute;logo</span>
+                <h1>Produtos esportivos</h1>
+                <p>Escolha os equipamentos para futebol, corrida e treinos do dia a dia.</p>
+            </div>
+
+            <div class="produtos">
+
+                <!-- BOLA DE FUTEBOL -->
+                <article class="card" data-product-id="bola-futebol" data-product-name="Bola de Futebol"
+                    data-product-price="129.90" data-product-stock="12"
+                    data-product-image="https://images.tcdn.com.br/img/img_prod/1376235/bola_futebol_de_campo_nike_cbf_academy_su23_2049_2_02f38b79e4b77fc181bc34aaeffd9114.jpg">
+
+                    <div class="card__imagem">
+                        <img src="https://images.tcdn.com.br/img/img_prod/1376235/bola_futebol_de_campo_nike_cbf_academy_su23_2049_2_02f38b79e4b77fc181bc34aaeffd9114.jpg"
+                            alt="Bola de futebol Nike CBF Academy">
+                    </div>
+
+                    <div class="card__conteudo">
+                        <span class="categoria">Futebol</span>
+                        <h3>Bola de Futebol</h3>
+                        <p>Bola resistente para treinos, jogos e partidas com os amigos.</p>
+                        <strong class="preco">R$ 129,90</strong>
+                        <button type="button" class="btn" data-add-to-cart>
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CHUTEIRA NIKE -->
+                <article class="card" data-product-id="chuteira-nike" data-product-name="Chuteira Nike"
+                    data-product-price="349.90" data-product-stock="6"
+                    data-product-image="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/70fe04a3-29f5-4812-b8d6-0c5d59c04202/PHANTOM+6+LOW+ELITE+FG.png">
+
+                    <div class="card__imagem">
+                        <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/70fe04a3-29f5-4812-b8d6-0c5d59c04202/PHANTOM+6+LOW+ELITE+FG.png"
+                            alt="Chuteira Nike branca com detalhes em azul e rosa">
+                    </div>
+
+                    <div class="card__conteudo">
+                        <span class="categoria">Campo</span>
+                        <h3>Chuteira Nike</h3>
+                        <p>Modelo leve para velocidade, controle e conforto em campo.</p>
+                        <strong class="preco">R$ 349,90</strong>
+
+                        <label class="opcao" for="tamanho-chuteira">
+                            Tamanho
+                            <select id="tamanho-chuteira" data-variation="Tamanho" required>
+                                <option value="">Selecione</option>
+                                <option>38</option>
+                                <option>39</option>
+                                <option>40</option>
+                                <option>41</option>
+                                <option>42</option>
+                            </select>
+                        </label>
+
+                        <label class="opcao" for="cor-chuteira">
+                            Cor
+                            <select id="cor-chuteira" data-variation="Cor" required>
+                                <option value="">Selecione</option>
+                                <option>Branco/Azul</option>
+                                <option>Preto</option>
+                            </select>
+                        </label>
+
+                        <button type="button" class="btn" data-add-to-cart>
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TÊNIS DE CORRIDA -->
+                <article class="card" data-product-id="tenis-corrida" data-product-name="Tênis de Corrida"
+                    data-product-price="299.90" data-product-stock="8" data-product-image="img/tenis-corrida.png">
+
+                    <div class="card__imagem">
+                        <img src="img/tenis-corrida.png" alt="Tênis de corrida Nike Journey Run preto">
+                    </div>
+
+                    <div class="card__conteudo">
+                        <span class="categoria">Corrida</span>
+                        <h3>T&ecirc;nis de Corrida</h3>
+                        <p>Amortecimento macio para caminhadas, corridas e academia.</p>
+                        <strong class="preco">R$ 299,90</strong>
+
+                        <label class="opcao" for="tamanho-tenis">
+                            Tamanho
+                            <select id="tamanho-tenis" data-variation="Tamanho" required>
+                                <option value="">Selecione</option>
+                                <option>35</option>
+                                <option>36</option>
+                                <option>37</option>
+                                <option>38</option>
+                                <option>39</option>
+                                <option>40</option>
+                                <option>41</option>
+                                <option>42</option>
+                                <option>43</option>
+                                <option>44</option>
+                            </select>
+                        </label>
+
+                        <label class="opcao" for="cor-tenis">
+                            Cor
+                            <select id="cor-tenis" data-variation="Cor" required>
+                                <option value="">Selecione</option>
+                                <option>Preto</option>
+                                <option>Branco</option>
+                                <option>Azul</option>
+                                <option>Vermelho</option>
+                            </select>
+                        </label>
+
+                        <button type="button" class="btn" data-add-to-cart>
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </article>
+
+                <!-- LUVA DE GOLEIRO -->
+                <article class="card" data-product-id="luva-goleiro" data-product-name="Luva de Goleiro"
+                    data-product-price="159.90" data-product-stock="5" data-product-image="img/luva.webp">
+
+                    <div class="card__imagem">
+                        <img src="img/luva.webp" alt="Luva de goleiro azul">
+                    </div>
+
+                    <div class="card__conteudo">
+                        <span class="categoria">Goleiro</span>
+                        <h3>Luva de Goleiro</h3>
+                        <p>Boa ader&ecirc;ncia para defesas, treinos e jogos oficiais.</p>
+                        <strong class="preco">R$ 159,90</strong>
+
+                        <button type="button" class="btn" data-add-to-cart>
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CAMISETA DRY FIT -->
+                <article class="card" data-product-id="camiseta-dry-fit" data-product-name="Camiseta Dry Fit"
+                    data-product-price="89.90" data-product-stock="15" data-product-image="img/camisa.jpg">
+
+                    <div class="card__imagem">
+                        <img src="img/camisa.jpg" alt="Camiseta esportiva preta">
+                    </div>
+
+                    <div class="card__conteudo">
+                        <span class="categoria">Treino</span>
+                        <h3>Camiseta Dry Fit</h3>
+                        <p>Tecido leve e respir&aacute;vel para treinos intensos.</p>
+                        <strong class="preco">R$ 89,90</strong>
+
+                        <button type="button" class="btn" data-add-to-cart>
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </article>
+
+                <!-- GARRAFA TÉRMICA -->
+                <article class="card" data-product-id="garrafa-termica" data-product-name="Garrafa Térmica"
+                    data-product-price="69.90" data-product-stock="10" data-product-image="img/garrafa.webp">
+
+                    <div class="card__imagem">
+                        <img src="img/garrafa.webp" alt="Garrafa t&eacute;rmica azul">
+                    </div>
+
+                    <div class="card__conteudo">
+                        <span class="categoria">Acess&oacute;rios</span>
+                        <h3>Garrafa T&eacute;rmica</h3>
+                        <p>Ideal para manter a hidrata&ccedil;&atilde;o durante o treino.</p>
+                        <strong class="preco">R$ 69,90</strong>
+
+                        <button type="button" class="btn" data-add-to-cart>
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 Two Sports. Todos os direitos reservados.</p>
+    </footer>
+
+    <div class="notificacao" data-cart-notice role="status" aria-live="polite">
+    </div>
+
+    <script src="loading.js"></script>
+    <script src="carrinho.js"></script>
+
+    </body>
+
+</html>
