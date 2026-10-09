@@ -1,0 +1,216 @@
+
+/* ===================================================================== */
+/*                       TWO SPORTS — CORES GLOBAIS                      */
+/* ===================================================================== */
+
+/* ===================================================================== */
+/*                             MODO ESCURO                               */
+/* ===================================================================== */
+
+:root,
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* ------------------------- IDENTIDADE VISUAL ---------------------- */
+
+    --cor-primaria: #1B1464;
+    --cor-secundaria: #3B0875;
+    --cor-destaque: #7254FF;
+    --cor-primaria-hover: #29208A;
+
+    /* ------------------------------- FUNDOS --------------------------- */
+
+    --cor-fundo: #17171D;
+    --cor-superficie: #22212B;
+    --cor-superficie-hover: #353242;
+
+    --cor-cabecalho: #251078;
+    --cor-rodape: #0B073B;
+    --cor-fundo-logo: #FFFFFF;
+
+    /* ------------------------------- TEXTOS --------------------------- */
+
+    --cor-texto: #F5F5FF;
+    --cor-texto-secundario: #A7B7D8;
+    --cor-texto-invertido: #FFFFFF;
+
+    /* ------------------------ BORDAS E DIVISÓRIAS --------------------- */
+
+    --cor-borda: #403B5B;
+    --cor-borda-focus: #927CFF;
+    --cor-borda-divisoria: #4E3F69;
+    --cor-borda-rodape: #393149;
+
+    /* -------------------------- CAMPOS DE ENTRADA --------------------- */
+
+    --cor-input: #E5ECF7;
+    --cor-input-focus: #CAD3E0;
+    --cor-texto-input: #17171D;
+    --cor-placeholder: #737B8C;
+
+    /* ------------------------------- BOTÕES --------------------------- */
+
+    --cor-botao: #38217B;
+    --cor-botao-hover: #5034A1;
+    --cor-botao-texto: #FFFFFF;
+
+    --cor-botao-translucido: #0808082D;
+    --cor-botao-translucido-hover: #8685852D;
+
+    /* --------------------------- BOTÃO GITHUB ------------------------- */
+
+    --cor-github: #35216B;
+    --cor-github-hover: #4B2D91;
+    --cor-borda-github: #59418F;
+    --cor-borda-github-hover: #8C6BE0;
+
+    /* ------------------------------- ESTADOS -------------------------- */
+
+    --cor-sucesso: #42C98A;
+    --cor-erro: #FF6B78;
+    --cor-aviso: #FFC857;
+
+    /* --------------------------- SOMBRAS E FOCO ----------------------- */
+
+    --sombra-card: 0 0 0.2rem rgb(0 0 0 / 20%);
+    --sombra-card-hover: 0 0 1rem rgb(0 0 0 / 20%);
+    --foco: #927CFF;
+
+    /* ------------------------------ GRADIENTES ------------------------ */
+
+    --gradiente-marca: linear-gradient(
+        110deg,
+        #171078b9 0%,
+        #3b0875b9 100%
+    );
+
+    --gradiente-rodape: linear-gradient(
+        110deg,
+        #0B073B 0%,
+        #31064B 100%
+    );
+}
+
+/* ===================================================================== */
+/*                              MODO CLARO                               */
+/* ===================================================================== */
+
+[data-theme="light"] {
+    color-scheme: light;
+
+    /* ------------------------- IDENTIDADE VISUAL ---------------------- */
+
+    --cor-primaria: #1B1464;
+    --cor-secundaria: #3B0875;
+    --cor-destaque: #6045E8;
+    --cor-primaria-hover: #29208A;
+
+    /* ------------------------------- FUNDOS --------------------------- */
+
+    --cor-fundo: #F5F6FC;
+    --cor-superficie: #FFFFFF;
+    --cor-superficie-hover: #ECEBFA;
+
+    --cor-cabecalho: #FFFFFF;
+    --cor-rodape: #E9E7FA;
+    --cor-fundo-logo: #FFFFFF;
+
+    /* ------------------------------- TEXTOS --------------------------- */
+
+    --cor-texto: #1B1833;
+    --cor-texto-secundario: #5F5B7A;
+    --cor-texto-invertido: #FFFFFF;
+
+    /* ------------------------ BORDAS E DIVISÓRIAS --------------------- */
+
+    --cor-borda: #D8D5EB;
+    --cor-borda-focus: #6045E8;
+    --cor-borda-divisoria: #D8D5EB;
+    --cor-borda-rodape: #D8D5EB;
+
+    /* -------------------------- CAMPOS DE ENTRADA --------------------- */
+
+    --cor-input: #FFFFFF;
+    --cor-input-focus: #F0EEFC;
+    --cor-texto-input: #1B1833;
+    --cor-placeholder: #77738A;
+
+    /* ------------------------------- BOTÕES --------------------------- */
+
+    --cor-botao: #1B1464;
+    --cor-botao-hover: #3B0875;
+    --cor-botao-texto: #FFFFFF;
+
+    --cor-botao-translucido: rgb(27 20 100 / 8%);
+    --cor-botao-translucido-hover: rgb(27 20 100 / 16%);
+
+    /* --------------------------- BOTÃO GITHUB ------------------------- */
+
+    --cor-github: #1B1464;
+    --cor-github-hover: #3B0875;
+    --cor-borda-github: #51459A;
+    --cor-borda-github-hover: #6045E8;
+
+    /* ------------------------------- ESTADOS -------------------------- */
+
+    --cor-sucesso: #16794A;
+    --cor-erro: #C6283D;
+    --cor-aviso: #946200;
+
+    /* --------------------------- SOMBRAS E FOCO ----------------------- */
+
+    --sombra-card: 0 0 0.2rem rgb(28 20 80 / 8%);
+    --sombra-card-hover: 0 0 1rem rgb(28 20 80 / 12%);
+    --foco: #6045E8;
+
+    /* ------------------------------ GRADIENTES ------------------------ */
+
+    --gradiente-marca: linear-gradient(
+        110deg,
+        #171078b9 0%,
+        #3b0875b9 100%
+    );
+
+    --gradiente-rodape: linear-gradient(
+        110deg,
+        #E9E7FA 0%,
+        #F0E5FA 100%
+    );
+}
+
+/* ===================================================================== */
+/*                         ESTILOS GLOBAIS                               */
+/* ===================================================================== */
+
+html,
+body,
+#root {
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+::selection {
+    background-color: var(--cor-destaque);
+    color: #FFFFFF;
+}
+
+:focus-visible {
+    outline: 2px solid var(--foco);
+    outline-offset: 3px;
+}

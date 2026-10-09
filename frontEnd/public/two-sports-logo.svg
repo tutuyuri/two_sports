@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 650" role="img" aria-labelledby="title desc">
+  <title id="title">Two Sports</title>
+  <desc id="desc">Logo esportiva Two Sports com monograma TS, bola de basquete e texto em duas linhas.</desc>
+
+  <defs>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3216B8"/>
+      <stop offset="100%" stop-color="#6A2CFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Movimento esportivo -->
+  <path d="M92 292 C145 380, 290 388, 445 316"
+        fill="none" stroke="url(#purple)" stroke-width="28"
+        stroke-linecap="round"/>
+
+  <!-- Monograma TS -->
+  <path d="M120 105 H430 L392 153 H298 L267 294 H207 L239 153 H82 Z"
+        fill="#111827"/>
+
+  <path d="M285 158 H420 L389 202 H319 L310 236 H387
+           C422 236 437 257 428 291
+           C417 330 386 349 340 349 H240 L269 304 H344
+           C355 304 361 299 364 290
+           C366 283 362 279 353 279 H282
+           C248 279 233 259 242 226
+           C251 190 264 171 285 158 Z"
+        fill="url(#purple)"/>
+
+  <!-- Bola de basquete -->
+  <circle cx="475" cy="112" r="48" fill="url(#purple)"/>
+  <path d="M432 112 H518 M475 64 V160
+           M443 76 C477 96 493 125 494 156
+           M507 77 C473 96 456 125 456 157"
+        fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Texto -->
+  <text x="230" y="490"
+        text-anchor="middle"
+        font-family="Inter, Arial, sans-serif"
+        font-size="130"
+        font-weight="800"
+        font-style="italic"
+        letter-spacing="2"
+        fill="#111827">TWO</text>
+
+  <text x="300" y="570"
+        text-anchor="middle"
+        font-family="Inter, Arial, sans-serif"
+        font-size="85"
+        font-weight="700"
+        letter-spacing="13"
+        fill="#4A20D1">SPORTS</text>
+</svg>

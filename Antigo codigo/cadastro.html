@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Two Sports</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="loading.css">
+</head>
+<body>
+    <main class="login-page">
+        <section class="login-box cadastro-box" aria-labelledby="titulo-cadastro">
+            <h1 id="titulo-cadastro">Two Sports</h1>
+            <p>Crie sua conta para acompanhar seus pedidos</p>
+
+            <form id="cadastro-form" novalidate>
+                <label for="nome">Nome completo</label>
+                <input id="nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name" required minlength="3">
+
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email" required>
+
+                <label for="senha">Senha</label>
+                <div class="campo-senha">
+                    <input id="senha" name="senha" type="password" placeholder="Mínimo de 6 caracteres" autocomplete="new-password" required minlength="6">
+                    <button class="alternar-senha" type="button" data-toggle-password="senha" aria-label="Mostrar senha">Mostrar</button>
+                </div>
+
+                <label for="confirmar-senha">Confirme sua senha</label>
+                <div class="campo-senha">
+                    <input id="confirmar-senha" name="confirmarSenha" type="password" placeholder="Digite a senha novamente" autocomplete="new-password" required minlength="6">
+                    <button class="alternar-senha" type="button" data-toggle-password="confirmar-senha" aria-label="Mostrar confirmação de senha">Mostrar</button>
+                </div>
+
+                <p class="mensagem-formulario" data-form-message role="status" aria-live="polite"></p>
+                <button type="submit">Criar conta</button>
+            </form>
+
+            <div class="links">
+                <span>Já possui uma conta?</span>
+                <a href="login.html">Entrar</a>
+            </div>
+            <a href="TWO SPORTS.HTML" class="voltar">Voltar para a loja</a>
+        </section>
+    </main>
+    <script src="loading.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

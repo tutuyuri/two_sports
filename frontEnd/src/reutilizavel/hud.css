@@ -1,0 +1,671 @@
+
+/* ===================================================================== */
+/*                         TWO SPORTS — HUD                              */
+/*                         HEADER E FOOTER                               */
+/* ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* ===================================================================== */
+/*                           ESTILOS GLOBAIS                             */
+/* ===================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.cabecalho,
+.footer {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===================================================================== */
+/*                                HEADER                                 */
+/* ===================================================================== */
+
+.cabecalho {
+    grid-area: Header;
+    position: fixed;
+    z-index: 10;
+
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+
+    color: var(--cor-texto-invertido);
+}
+
+.cabecalho::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradiente-marca);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.205);
+    backdrop-filter: blur(11.3px);
+    -webkit-backdrop-filter: blur(11.3px);
+    z-index: -3;
+    pointer-events: none;
+}
+
+.cabecalho_conteudo {
+    width: 100%;
+    max-width: 1600px;
+    padding: 18px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* ------------------------------- LOGO --------------------------------- */
+
+.logo {
+    flex-shrink: 0;
+
+    display: block;
+    width: 100px;
+    height: 100px;
+
+    background-color: var(--cor-fundo-logo);
+    background-image: url("two-sports-logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    border-radius: 1rem;
+    text-decoration: none;
+
+    filter: drop-shadow(var(--sombra-card));
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(var(--sombra-card-hover));
+}
+
+/* ------------------------------- MENU --------------------------------- */
+
+.menu {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 7rem;
+
+    text-align: center;
+}
+
+.menu div {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu a {
+    padding: 0.2rem;
+    border-radius: 1rem;
+
+    font-weight: 300;
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        filter 0.2s ease;
+}
+
+.menu a:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.158);
+    filter: drop-shadow(var(--sombra-card-hover));
+}
+
+.menu_links {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+/* ------------------------------ PESQUISA ------------------------------ */
+
+.pesquisa {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 40vw;
+    max-width: 650px;
+    min-width: 180px;
+}
+
+#pesquisa {
+    width: 100%;
+    height: 2.3rem;
+    padding: 0 48px 0 16px;
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+
+    background-color: var(--cor-input);
+    color: var(--cor-texto-input);
+
+    font-size: 15px;
+    font-family: inherit;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+#pesquisa::placeholder {
+    color: var(--cor-placeholder);
+}
+
+#pesquisa:focus {
+    border-color: var(--cor-borda-focus);
+    background-color: var(--cor-input-focus);
+    box-shadow: 0 0 0 3px var(--foco);
+}
+
+.iconPesquisa {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: 0.4rem;
+
+    border: none;
+    border-left: 1px solid var(--cor-borda);
+    border-radius: 0 10px 10px 0;
+
+    background-color: var(--cor-input);
+    color: var(--cor-texto-input);
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.iconPesquisa:hover {
+    background-color: var(--cor-input-focus);
+}
+
+/* ------------------------------ CARRINHO ------------------------------ */
+
+.menu_carrinho {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.contador-carrinho {
+    position: absolute;
+    right: 0;
+    bottom: 0.1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 0.8rem;
+    height: 0.8rem;
+    padding: 0 2px;
+
+    border-radius: 50%;
+    background: var(--cor-input);
+    color: var(--cor-texto-input);
+
+    font-size: 0.6rem;
+    font-weight: bold;
+
+    overflow: hidden;
+}
+
+/* --------------------------- ÁREA DO USUÁRIO -------------------------- */
+
+.area-usuario {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.botao-usuario {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--cor-botao-translucido);
+    color: var(--cor-texto-invertido);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.botao-usuario:hover {
+    background-color: var(--cor-botao-translucido-hover);
+    transform: scale(1.05);
+}
+
+.setaUsuario {
+    transition: transform 0.2s ease;
+}
+
+.setaUsuario.ativo {
+    transform: rotate(180deg);
+}
+
+/* ---------------------------- MENU DO USUÁRIO ------------------------- */
+
+.menu-usuario {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 210px;
+    padding: 8px;
+
+    background-color: var(--cor-superficie);
+    color: var(--cor-texto);
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+
+    box-shadow: var(--sombra-card-hover);
+    z-index: 1000;
+}
+
+.menu-usuario a,
+.botao-sair {
+    width: 100%;
+    padding: 11px 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--cor-texto);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.menu-usuario a:hover,
+.botao-sair:hover {
+    background-color: var(--cor-superficie-hover);
+}
+
+.botao-sair {
+    margin-top: 6px;
+    padding-top: 14px;
+
+    border-top: 1px solid var(--cor-borda);
+    border-radius: 0 0 8px 8px;
+}
+
+/* ===================================================================== */
+/*                                FOOTER                                 */
+/* ===================================================================== */
+
+.footer {
+    grid-area: footer;
+    position: relative;
+
+    width: 100%;
+    padding: 24px 30px 0;
+
+    background: var(--gradiente-rodape);
+    color: var(--cor-texto);
+
+    box-sizing: border-box;
+}
+
+/* ---------------------------- ÁREA PRINCIPAL -------------------------- */
+
+.footer_conteudo {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 5% 40px;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+
+    box-sizing: border-box;
+}
+
+/* -------------------------------- MARCA ------------------------------- */
+
+.footer_marca {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    border-bottom: 1px solid var(--cor-borda-divisoria);
+    padding-bottom: 24px;
+}
+
+.footer_marca .logo {
+    flex-shrink: 0;
+}
+
+.footer_descricao {
+    max-width: 300px;
+    margin: 0;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    overflow-wrap: break-word;
+}
+
+/* ----------------------------- COLUNAS -------------------------------- */
+
+.footer_coluna {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer_coluna h3 {
+    margin: 4px 0 15px;
+
+    color: var(--cor-texto);
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.footer_coluna ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.footer_coluna a {
+    display: inline-block;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 14px;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer_coluna a:hover {
+    color: var(--cor-destaque);
+    transform: translateX(4px);
+}
+
+/* -------------------------------- GITHUB ------------------------------ */
+
+.footer_github p {
+    max-width: 230px;
+    margin: 0 0 18px;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.footer_link-github {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 10px 16px;
+
+    color: var(--cor-texto-invertido) !important;
+    background: var(--cor-github);
+
+    border: 1px solid var(--cor-borda-github);
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer_link-github:hover {
+    background: var(--cor-github-hover);
+    border-color: var(--cor-borda-github-hover);
+    transform: translateY(-2px);
+}
+
+/* ---------------------------- ÁREA INFERIOR --------------------------- */
+
+.footer_inferior {
+    width: 100%;
+    min-height: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 1px solid var(--cor-borda-rodape);
+}
+
+.footer_inferior p {
+    margin: 0;
+    padding: 5px 0;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ===================================================================== */
+/*                            RESPONSIVIDADE                             */
+/* ===================================================================== */
+
+@media (max-width: 1100px) {
+    .cabecalho {
+        gap: 2rem;
+    }
+
+    .cabecalho_conteudo {
+        gap: 24px;
+    }
+
+    .menu {
+        gap: 2rem;
+    }
+
+    .menu_links {
+        gap: 1.5rem;
+    }
+
+    .pesquisa {
+        width: 32vw;
+    }
+
+    .footer_conteudo {
+        padding-left: 2%;
+        padding-right: 2%;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cabecalho {
+        gap: 0;
+    }
+
+    .cabecalho_conteudo {
+        padding: 14px 18px;
+
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .logo {
+        width: 72px;
+        height: 72px;
+    }
+
+    .pesquisa {
+        order: 3;
+        width: 100%;
+        max-width: none;
+        flex-basis: 100%;
+    }
+
+    .menu {
+        flex: 1;
+        gap: 1rem;
+    }
+
+    .menu_links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .menu div {
+        gap: 12px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .footer {
+        padding: 20px 18px 0;
+    }
+
+    .footer_conteudo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
+        padding: 24px 0 30px;
+    }
+
+    .footer_marca {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .cabecalho_conteudo {
+        gap: 14px;
+    }
+
+    .menu {
+        flex: initial;
+        gap: 0.75rem;
+    }
+
+    .menu_links {
+        gap: 0.75rem;
+    }
+
+    .menu a {
+        font-size: 12px;
+    }
+
+    .botao-usuario {
+        width: 2.6rem;
+        height: 2.6rem;
+    }
+
+    .footer_conteudo {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer_marca {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .footer_marca .logo {
+        width: 72px;
+        height: 72px;
+    }
+
+    .footer_descricao {
+        font-size: 13px;
+    }
+
+    .footer_coluna h3 {
+        margin-bottom: 10px;
+    }
+
+    .footer_github p {
+        max-width: 100%;
+    }
+}

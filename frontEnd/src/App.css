@@ -1,0 +1,18 @@
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 100%;
+}
+
+.App {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.content {
+    margin-top: 60px;
+    flex: 1; 
+    padding: 20px;
+}
