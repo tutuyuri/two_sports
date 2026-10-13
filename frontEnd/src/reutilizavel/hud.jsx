@@ -73,8 +73,6 @@ function Usuario() {
 export function Header() {
 
   const pesquisaRef = useRef(null);
-  const location = useLocation();
-  console.log(location.pathname);
 
   function focarPesquisa() {
     pesquisaRef.current?.focus();

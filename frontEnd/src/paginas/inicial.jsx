@@ -1,11 +1,77 @@
-export function Inicio() {
 
+import {
+  PackageOpen,
+  CreditCardCheck,
+  BanknoteArrowDown,
+  ShoppingBasket,
+  Grid2X2,
+} from 'lucide-react';
+
+import { Direcionaveis } from '../reutilizavel/areas.jsx';
+import { Carrossel } from '../reutilizavel/carrossel.jsx';
+import "./inicial.css"
+
+
+
+export function Inicio() {
+  const direcionaveis = [
+    <Direcionaveis
+      titulo="Frete grátis"
+      descricao="Benefício por ser sua primeira compra."
+      textoBotao="Mostrar produtos"
+      direcionamento="/produtos"
+      icone={PackageOpen}
+    />,
+    <Direcionaveis
+      titulo="Meios de pagamento"
+      descricao="Pague suas compras com rapidez e segurança."
+      textoBotao="Mostrar meios"
+      direcionamento="/configuracoes"
+      icone={CreditCardCheck}
+    />,
+    <Direcionaveis
+      titulo="Menos de R$100,00"
+      descricao="Confira produtos com preços baixos."
+      textoBotao="Mostrar produtos"
+      direcionamento="/produtos"
+      icone={BanknoteArrowDown}
+    />,
+    <Direcionaveis
+      titulo="Mais vendidos"
+      descricao="Explore os produtos que são tendência."
+      textoBotao="Ir para mais vendidos"
+      direcionamento="/produtos"
+      icone={ShoppingBasket}
+    />,
+    <Direcionaveis
+      titulo="Nossas categorias"
+      descricao="Encontre garrafas, roupas, bolas e muito mais."
+      textoBotao="Ir para categorias"
+      direcionamento="/produtos"
+      icone={Grid2X2}
+    />,
+  ];
   return (
-    <div className="App">
-      <main className="content">
-        <h1>Essa é sua área inicial</h1>
-        <p>Bem-vindo à sua área inicial!</p>
-      </main>
-    </div>
+    <>
+      <div className="atalho">
+        <h2>Acesso rápido</h2>
+        <Carrossel
+        itens={direcionaveis}
+        ariaLabel="Benefícios e atalhos da loja"
+        larguraMinima={250}
+        />
+      </div>
+    </>
+  )
+}
+
+
+
+
+
+function ZonaProdutos() {
+  return (
+    <>
+    </>
   )
 }

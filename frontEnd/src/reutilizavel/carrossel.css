@@ -1,0 +1,119 @@
+/* ===================================================================== */
+/* TWO SPORTS — CARROSSEL REUTILIZÁVEL                                   */
+/* ===================================================================== */
+
+.carrossel {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+    margin: 24px 0;
+    box-sizing: border-box;
+}
+
+.carrossel__lista {
+    display: flex;
+    align-items: stretch;
+    gap: var(--carrossel-gap, 16px);
+
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 8px 2px 16px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.carrossel__lista::-webkit-scrollbar {
+    display: none;
+}
+
+.carrossel__item {
+    display: flex;
+    flex: 0 0 var(
+        --largura-item-carrossel,
+        var(--carrossel-largura-minima, 190px)
+    );
+    min-width: var(--carrossel-largura-minima, 190px);
+    box-sizing: border-box;
+    scroll-snap-align: start;
+}
+
+.carrossel__item > * {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.carrossel__seta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    width: 42px;
+    height: 46px;
+    padding: 0;
+
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.carrossel__seta:hover:not(:disabled) {
+    color: var(--cor-texto-invertido);
+    background-color: var(--cor-primaria-hover);
+    border-color: var(--cor-destaque);
+    transform: scale(1.04);
+}
+
+.carrossel__seta:focus-visible {
+    outline: 2px solid var(--cor-borda-focus);
+    outline-offset: 3px;
+}
+
+.carrossel__seta:disabled,
+.carrossel__seta--oculta {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .carrossel {
+        grid-template-columns: 32px minmax(0, 1fr) 32px;
+        gap: 6px;
+        margin: 18px 0;
+    }
+
+    .carrossel__seta {
+        width: 32px;
+        height: 42px;
+        border-radius: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carrossel__lista {
+        scroll-behavior: auto;
+    }
+
+    .carrossel__seta {
+        transition: none;
+    }
+}

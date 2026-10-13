@@ -1,186 +1,152 @@
-
 /* ===================================================================== */
-/*                       TWO SPORTS — CORES GLOBAIS                      */
-/* ===================================================================== */
-
-/* ===================================================================== */
-/*                             MODO ESCURO                               */
+/* TWO SPORTS — CORES GLOBAIS                                           */
 /* ===================================================================== */
 
 :root,
 [data-theme="dark"] {
     color-scheme: dark;
 
-    /* ------------------------- IDENTIDADE VISUAL ---------------------- */
-
-    --cor-primaria: #1B1464;
+    /* Identidade visual */
+    --cor-primaria: #28146B;
     --cor-secundaria: #3B0875;
-    --cor-destaque: #7254FF;
-    --cor-primaria-hover: #29208A;
+    --cor-destaque: #8B75FF;
+    --cor-primaria-hover: #38218A;
 
-    /* ------------------------------- FUNDOS --------------------------- */
-
+    /* Fundos e superfícies */
     --cor-fundo: #17171D;
-    --cor-superficie: #22212B;
-    --cor-superficie-hover: #353242;
-
+    --cor-superficie: #24232E;
+    --cor-superficie-hover: #302D3D;
+    --cor-painel-atalho: #040B20;
     --cor-cabecalho: #251078;
     --cor-rodape: #0B073B;
     --cor-fundo-logo: #FFFFFF;
 
-    /* ------------------------------- TEXTOS --------------------------- */
-
-    --cor-texto: #F5F5FF;
-    --cor-texto-secundario: #A7B7D8;
+    /* Textos */
+    --cor-texto: #F6F5FF;
+    --cor-texto-secundario: #B9B6D2;
     --cor-texto-invertido: #FFFFFF;
+    --cor-texto-painel: #F6F5FF;
 
-    /* ------------------------ BORDAS E DIVISÓRIAS --------------------- */
-
-    --cor-borda: #403B5B;
-    --cor-borda-focus: #927CFF;
-    --cor-borda-divisoria: #4E3F69;
+    /* Bordas e divisórias */
+    --cor-borda: #403B59;
+    --cor-borda-focus: #A294FF;
+    --cor-borda-divisoria: #4A3B65;
     --cor-borda-rodape: #393149;
 
-    /* -------------------------- CAMPOS DE ENTRADA --------------------- */
-
-    --cor-input: #E5ECF7;
-    --cor-input-focus: #CAD3E0;
+    /* Campos de entrada */
+    --cor-input: #E8EDF7;
+    --cor-input-focus: #FFFFFF;
     --cor-texto-input: #17171D;
-    --cor-placeholder: #737B8C;
+    --cor-placeholder: #70788B;
 
-    /* ------------------------------- BOTÕES --------------------------- */
-
+    /* Botões principais */
     --cor-botao: #38217B;
     --cor-botao-hover: #5034A1;
     --cor-botao-texto: #FFFFFF;
 
-    --cor-botao-translucido: #0808082D;
-    --cor-botao-translucido-hover: #8685852D;
+    /* Botão dentro dos cards */
+    --cor-botao-direcionaveis: #171624;
+    --cor-botao-hover-direcionaveis: #49358F;
+    --cor-botao-texto-direcionaveis: #D0C5FF;
+    --cor-botao-hover-texto-direcionaveis: #FFFFFF;
 
-    /* --------------------------- BOTÃO GITHUB ------------------------- */
+    /* Botões translúcidos */
+    --cor-botao-translucido: rgb(255 255 255 / 7%);
+    --cor-botao-translucido-hover: rgb(255 255 255 / 15%);
 
+    /* GitHub */
     --cor-github: #35216B;
     --cor-github-hover: #4B2D91;
     --cor-borda-github: #59418F;
     --cor-borda-github-hover: #8C6BE0;
 
-    /* ------------------------------- ESTADOS -------------------------- */
-
+    /* Estados */
     --cor-sucesso: #42C98A;
-    --cor-erro: #FF6B78;
+    --cor-erro: #FF7380;
     --cor-aviso: #FFC857;
 
-    /* --------------------------- SOMBRAS E FOCO ----------------------- */
+    /* Sombras, foco e gradientes */
+    --sombra-card: 0 3px 12px rgb(0 0 0 / 14%);
+    --sombra-card-hover: 0 12px 28px rgb(0 0 0 / 26%);
+    --foco: #A294FF;
 
-    --sombra-card: 0 0 0.2rem rgb(0 0 0 / 20%);
-    --sombra-card-hover: 0 0 1rem rgb(0 0 0 / 20%);
-    --foco: #927CFF;
-
-    /* ------------------------------ GRADIENTES ------------------------ */
-
-    --gradiente-marca: linear-gradient(
-        110deg,
-        #171078b9 0%,
-        #3b0875b9 100%
-    );
-
-    --gradiente-rodape: linear-gradient(
-        110deg,
-        #0B073B 0%,
-        #31064B 100%
-    );
+    --gradiente-marca: linear-gradient(110deg, #20105cb0 0%, #3B0875b0 100%);
+    --gradiente-rodape: linear-gradient(110deg, #0B073B 0%, #31064B 100%);
 }
 
 /* ===================================================================== */
-/*                              MODO CLARO                               */
+/* MODO CLARO                                                             */
 /* ===================================================================== */
 
 [data-theme="light"] {
     color-scheme: light;
 
-    /* ------------------------- IDENTIDADE VISUAL ---------------------- */
-
-    --cor-primaria: #1B1464;
+    --cor-primaria: #28146B;
     --cor-secundaria: #3B0875;
     --cor-destaque: #6045E8;
-    --cor-primaria-hover: #29208A;
-
-    /* ------------------------------- FUNDOS --------------------------- */
+    --cor-primaria-hover: #38218A;
 
     --cor-fundo: #F5F6FC;
     --cor-superficie: #FFFFFF;
-    --cor-superficie-hover: #ECEBFA;
-
+    --cor-superficie-hover: #F0EDFC;
+    --cor-painel-atalho: #ECEFFA;
     --cor-cabecalho: #FFFFFF;
     --cor-rodape: #E9E7FA;
     --cor-fundo-logo: #FFFFFF;
 
-    /* ------------------------------- TEXTOS --------------------------- */
-
     --cor-texto: #1B1833;
-    --cor-texto-secundario: #5F5B7A;
+    --cor-texto-secundario: #625D7D;
     --cor-texto-invertido: #FFFFFF;
+    --cor-texto-painel: #1B1833;
 
-    /* ------------------------ BORDAS E DIVISÓRIAS --------------------- */
-
-    --cor-borda: #D8D5EB;
+    --cor-borda: #DAD6EC;
     --cor-borda-focus: #6045E8;
-    --cor-borda-divisoria: #D8D5EB;
+    --cor-borda-divisoria: #D8D3EA;
     --cor-borda-rodape: #D8D5EB;
 
-    /* -------------------------- CAMPOS DE ENTRADA --------------------- */
-
     --cor-input: #FFFFFF;
-    --cor-input-focus: #F0EEFC;
+    --cor-input-focus: #F7F5FF;
     --cor-texto-input: #1B1833;
     --cor-placeholder: #77738A;
 
-    /* ------------------------------- BOTÕES --------------------------- */
-
-    --cor-botao: #1B1464;
+    --cor-botao: #28146B;
     --cor-botao-hover: #3B0875;
     --cor-botao-texto: #FFFFFF;
 
-    --cor-botao-translucido: rgb(27 20 100 / 8%);
-    --cor-botao-translucido-hover: rgb(27 20 100 / 16%);
+    --cor-botao-direcionaveis: #E8E2FA;
+    --cor-botao-hover-direcionaveis: #D7CCF7;
+    --cor-botao-texto-direcionaveis: #281858;
+    --cor-botao-hover-texto-direcionaveis: #281858;
 
-    /* --------------------------- BOTÃO GITHUB ------------------------- */
+    --cor-botao-translucido: rgb(27 20 100 / 7%);
+    --cor-botao-translucido-hover: rgb(27 20 100 / 14%);
 
-    --cor-github: #1B1464;
+    --cor-github: #28146B;
     --cor-github-hover: #3B0875;
     --cor-borda-github: #51459A;
     --cor-borda-github-hover: #6045E8;
-
-    /* ------------------------------- ESTADOS -------------------------- */
 
     --cor-sucesso: #16794A;
     --cor-erro: #C6283D;
     --cor-aviso: #946200;
 
-    /* --------------------------- SOMBRAS E FOCO ----------------------- */
-
-    --sombra-card: 0 0 0.2rem rgb(28 20 80 / 8%);
-    --sombra-card-hover: 0 0 1rem rgb(28 20 80 / 12%);
+    --sombra-card: 0 3px 12px rgb(28 20 80 / 7%);
+    --sombra-card-hover: 0 12px 28px rgb(28 20 80 / 13%);
     --foco: #6045E8;
 
-    /* ------------------------------ GRADIENTES ------------------------ */
-
-    --gradiente-marca: linear-gradient(
-        110deg,
-        #171078b9 0%,
-        #3b0875b9 100%
-    );
-
-    --gradiente-rodape: linear-gradient(
-        110deg,
-        #E9E7FA 0%,
-        #F0E5FA 100%
-    );
+    --gradiente-marca: linear-gradient(110deg, #28146bb0 0%, #491680b0 100%);
+    --gradiente-rodape: linear-gradient(110deg, #E9E7FA 0%, #F2E9FA 100%);
 }
 
 /* ===================================================================== */
-/*                         ESTILOS GLOBAIS                               */
+/* BASE GLOBAL                                                            */
 /* ===================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 html,
 body,
@@ -189,20 +155,34 @@ body,
     margin: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
-
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 button,
 input,
 select,
 textarea {
-    font-family: inherit;
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
 }
 
 ::selection {
@@ -213,4 +193,15 @@ textarea {
 :focus-visible {
     outline: 2px solid var(--foco);
     outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
