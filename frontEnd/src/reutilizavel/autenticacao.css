@@ -1,0 +1,248 @@
+/* ===================================================================== */
+/* TWO SPORTS — LOGIN E REGISTRO                                         */
+/* Mesmo visual dos cards direcionáveis da página inicial.               */
+/* ===================================================================== */
+
+.autenticacao {
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 28px 26px 22px;
+    overflow: hidden;
+
+    color: var(--cor-texto);
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--cor-superficie) 94%, var(--cor-destaque) 6%) 0%,
+        var(--cor-superficie) 54%,
+        color-mix(in srgb, var(--cor-superficie) 91%, var(--cor-primaria) 9%) 100%
+    );
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 13%, transparent);
+    border-radius: 18px;
+    box-shadow: var(--sombra-card);
+}
+
+/* Brilho sutil no canto */
+.autenticacao::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -90px;
+    right: -80px;
+    width: 220px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--cor-destaque) 20%, transparent) 0%,
+        color-mix(in srgb, var(--cor-destaque) 8%, transparent) 42%,
+        transparent 72%
+    );
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Linha de destaque no topo */
+.autenticacao::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 28px;
+    right: 28px;
+    height: 2px;
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(90deg, transparent, var(--cor-destaque), transparent);
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.autenticacao__cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.autenticacao__icone {
+    color: var(--cor-destaque);
+    margin-bottom: 8px;
+}
+
+.autenticacao__cabecalho h2 {
+    margin: 0;
+}
+
+.autenticacao__cabecalho p {
+    margin: 6px 0 0;
+    color: var(--cor-texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* ---------- Formulário ---------- */
+
+.autenticacao__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+
+    color: var(--cor-texto-input);
+    background-color: var(--cor-input);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.campo input::placeholder {
+    color: var(--cor-placeholder);
+}
+
+.campo input:focus {
+    background-color: var(--cor-input-focus);
+    border-color: var(--cor-borda-focus);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-borda-focus) 30%, transparent);
+}
+
+.campo__senha {
+    position: relative;
+}
+
+.campo__senha input {
+    padding-right: 46px;
+}
+
+.campo__alternar {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+
+    color: var(--cor-placeholder);
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.campo__alternar:hover {
+    color: var(--cor-texto-input);
+    background-color: color-mix(in srgb, var(--cor-destaque) 14%, transparent);
+}
+
+/* ---------- Checkbox de termos ---------- */
+
+.campo__check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario);
+}
+
+.campo__check input {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--cor-destaque);
+}
+
+.campo__check a {
+    color: var(--cor-destaque);
+    font-weight: 600;
+}
+
+/* ---------- Mensagem de erro / sucesso ---------- */
+
+.autenticacao__mensagem {
+    min-height: 1.4em;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.autenticacao__mensagem--erro {
+    color: var(--cor-erro);
+}
+
+.autenticacao__mensagem--sucesso {
+    color: var(--cor-sucesso);
+}
+
+/* ---------- Botão principal ---------- */
+
+.autenticacao__botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 48px;
+
+    color: var(--cor-botao-texto);
+    background-color: var(--cor-botao);
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 35%, transparent);
+    border-radius: 10px;
+    font-weight: 700;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.autenticacao__botao:hover {
+    background-color: var(--cor-botao-hover);
+    transform: translateY(-1px);
+}
+
+/* ---------- Rodapé do card ---------- */
+
+.autenticacao__rodape {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+    padding-top: 16px;
+
+    color: var(--cor-texto-secundario);
+    border-top: 1px solid var(--cor-borda-divisoria);
+    font-size: 0.9rem;
+}
+
+.autenticacao__rodape a {
+    color: var(--cor-destaque);
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .autenticacao {
+        padding: 22px 18px 18px;
+        border-radius: 14px;
+    }
+}

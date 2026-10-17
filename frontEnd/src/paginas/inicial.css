@@ -24,6 +24,10 @@
     line-height: 1.3;
 }
 
+.atalho--produtos {
+    margin-top: 24px;
+}
+
 @media (max-width: 600px) {
     .atalho {
         padding: 1rem;

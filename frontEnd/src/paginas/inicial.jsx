@@ -9,6 +9,7 @@ import {
 
 import { Direcionaveis } from '../reutilizavel/areas.jsx';
 import { Carrossel } from '../reutilizavel/carrossel.jsx';
+import { CarrosselProdutos } from '../reutilizavel/carrosselProdutos.jsx';
 import "./inicial.css"
 
 
@@ -51,27 +52,42 @@ export function Inicio() {
       icone={Grid2X2}
     />,
   ];
-  return (
+    return (
     <>
       <div className="atalho">
         <h2>Acesso rápido</h2>
         <Carrossel
-        itens={direcionaveis}
-        ariaLabel="Benefícios e atalhos da loja"
-        larguraMinima={250}
+          itens={direcionaveis}
+          ariaLabel="Benefícios e atalhos da loja"
+          larguraMinima={250}
         />
       </div>
-    </>
-  )
-}
 
+      <div className="atalho atalho--produtos">
+        <h2>Todos</h2>
+        <CarrosselProdutos FILTRO={"todos"} />
+      </div>
 
+      <div className="atalho atalho--produtos">
+        <h2>Menor preço</h2>
+        <CarrosselProdutos FILTRO={"menor-preco"} />
+      </div>
 
+      <div className="atalho atalho--produtos">
+        <h2>Melhores avaliados</h2>
+        <CarrosselProdutos FILTRO={"avaliados"} />
+      </div>
 
+      <div className="atalho atalho--produtos">
+        <h2>Mais vendidos</h2>
+        <CarrosselProdutos FILTRO={"vendidos"} />
+      </div>
 
-function ZonaProdutos() {
-  return (
-    <>
+      <div className="atalho atalho--produtos">
+        <h2>Frete grátis</h2>
+        <CarrosselProdutos FILTRO={"frete-gratis"} />
+      </div>
+
     </>
   )
 }
