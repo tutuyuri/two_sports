@@ -1,0 +1,282 @@
+/* ===================================================================== */
+/* TWO SPORTS — CARDS DIRECIONÁVEIS                                      */
+/* Visual premium: gradientes discretos, foco nos ícones e interação     */
+/* Compatível com o JSX atual de Direcionaveis.                          */
+/* ===================================================================== */
+
+.direcionaveis {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+
+    min-width: 0;
+    min-height: 278px;
+    height: 100%;
+    padding: 18px 16px 15px;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+
+    color: var(--cor-texto);
+    text-decoration: none;
+    text-align: center;
+
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--cor-superficie) 94%, var(--cor-destaque) 6%) 0%,
+        var(--cor-superficie) 54%,
+        color-mix(in srgb, var(--cor-superficie) 91%, var(--cor-primaria) 9%) 100%
+    );
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 13%, transparent);
+    border-radius: 14px;
+    box-shadow: var(--sombra-card);
+
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        background 0.24s ease,
+        border-color 0.24s ease,
+        box-shadow 0.24s ease,
+        transform 0.24s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+/* Brilho sutil no canto: dá profundidade sem competir com o conteúdo. */
+.direcionaveis::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -82px;
+    right: -74px;
+    width: 190px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--cor-destaque) 20%, transparent) 0%,
+        color-mix(in srgb, var(--cor-destaque) 8%, transparent) 42%,
+        transparent 72%
+    );
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.24s ease, transform 0.3s ease;
+}
+
+/* Linha de destaque na parte superior do card. */
+.direcionaveis::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 22px;
+    right: 22px;
+    height: 2px;
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--cor-destaque),
+        transparent
+    );
+    opacity: 0.35;
+    transform: scaleX(0.55);
+    transform-origin: center;
+    pointer-events: none;
+    transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.direcionaveis h2 {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.65em;
+    margin: 0;
+    color: var(--cor-texto);
+
+    font-size: clamp(1rem, 1.1vw, 1.2rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+    text-align: center;
+    overflow-wrap: anywhere;
+
+    transition: color 0.22s ease;
+}
+
+/* Ícone tratado como um pequeno elemento visual próprio. */
+.direcionaveis .icone {
+    display: block;
+    flex: 0 0 auto;
+    width: clamp(48px, 4vw, 58px);
+    height: clamp(48px, 4vw, 58px);
+    margin: 11px 0 13px;
+    padding: 10px;
+
+    color: var(--cor-texto);
+    stroke-width: 2;
+    overflow: visible;
+
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--cor-destaque) 14%, var(--cor-superficie)),
+        color-mix(in srgb, var(--cor-primaria) 12%, var(--cor-superficie))
+    );
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 20%, transparent);
+    border-radius: 16px;
+    filter: drop-shadow(0 3px 5px rgb(0 0 0 / 8%));
+
+    transition:
+        color 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        transform 0.28s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.direcionaveis p {
+    width: 100%;
+    min-height: 3em;
+    margin: 0 0 16px;
+
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    overflow-wrap: anywhere;
+
+    transition: color 0.22s ease;
+}
+
+/* O CTA fica no rodapé do card sem position:absolute. */
+.direcionaveis .botaoDirecional {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    width: 100%;
+    min-height: 36px;
+    margin-top: auto;
+    padding: 8px 12px;
+
+    background: linear-gradient(
+        135deg,
+        var(--cor-botao-direcionaveis),
+        color-mix(in srgb, var(--cor-botao-direcionaveis) 88%, var(--cor-destaque) 12%)
+    );
+    color: var(--cor-botao-texto-direcionaveis);
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 12%, transparent);
+    border-radius: 999px;
+
+    font-size: 0.875rem;
+    font-weight: 650;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        background 0.22s ease,
+        color 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s ease;
+}
+
+/* Interações apenas em dispositivos que realmente usam hover. */
+@media (hover: hover) and (pointer: fine) {
+    .direcionaveis:hover {
+        transform: translateY(-4px);
+        background: linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--cor-superficie-hover) 92%, var(--cor-destaque) 8%),
+            var(--cor-superficie-hover) 58%,
+            color-mix(in srgb, var(--cor-superficie-hover) 88%, var(--cor-primaria) 12%)
+        );
+        border-color: color-mix(in srgb, var(--cor-destaque) 62%, transparent);
+        box-shadow:
+            var(--sombra-card-hover),
+            0 0 0 1px color-mix(in srgb, var(--cor-destaque) 9%, transparent);
+    }
+
+    .direcionaveis:hover::before {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+
+    .direcionaveis:hover::after {
+        opacity: 0.9;
+        transform: scaleX(1);
+    }
+
+    .direcionaveis:hover h2 {
+        color: var(--cor-texto);
+    }
+
+    .direcionaveis:hover .icone {
+        color: var(--cor-destaque);
+        background: color-mix(in srgb, var(--cor-destaque) 13%, var(--cor-superficie));
+        border-color: color-mix(in srgb, var(--cor-destaque) 48%, transparent);
+        transform: translateY(-3px) rotate(-2deg);
+    }
+
+    .direcionaveis:hover p {
+        color: var(--cor-texto);
+    }
+
+    .direcionaveis:hover .botaoDirecional {
+        background: var(--cor-botao-hover-direcionaveis);
+        color: var(--cor-botao-hover-texto-direcionaveis, #FFFFFF);
+        border-color: color-mix(in srgb, var(--cor-destaque) 35%, transparent);
+        box-shadow: 0 4px 12px color-mix(in srgb, var(--cor-destaque) 18%, transparent);
+        transform: translateY(-1px);
+    }
+}
+
+.direcionaveis:focus-visible {
+    outline: 3px solid var(--foco);
+    outline-offset: 4px;
+    border-color: var(--cor-destaque);
+}
+
+.direcionaveis:active {
+    transform: translateY(-1px) scale(0.995);
+}
+
+@media (max-width: 600px) {
+    .direcionaveis {
+        min-height: 260px;
+        padding: 16px 14px 14px;
+        border-radius: 13px;
+    }
+
+    .direcionaveis h2 {
+        font-size: 1rem;
+    }
+
+    .direcionaveis .icone {
+        width: 52px;
+        height: 52px;
+        margin: 10px 0 12px;
+        padding: 9px;
+        border-radius: 14px;
+    }
+
+    .direcionaveis p {
+        font-size: 0.875rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .direcionaveis,
+    .direcionaveis::before,
+    .direcionaveis::after,
+    .direcionaveis h2,
+    .direcionaveis .icone,
+    .direcionaveis p,
+    .direcionaveis .botaoDirecional {
+        transition: none;
+    }
+}
