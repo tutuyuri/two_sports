@@ -161,7 +161,7 @@ export function Footer() {
           rel="noopener noreferrer"
           aria-label="Acessar o repositório Two Sports no GitHub"
         >
-          <img src="github.svg" alt="GitHub Logo" className="footer_github-logo" width="40"/>
+          <img src="/github.svg" alt="GitHub Logo" className="footer_github-logo" width="40"/>
           <span>GitHub</span>
         </a>
       </div>
