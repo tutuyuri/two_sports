@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LogIn } from "lucide-react";
 import { CardAutenticacao, CampoSenha } from "../reutilizavel/autenticacao.jsx";
-import { useNavigate } from "react-router-dom";
 import { entrar } from "../services/auth.js";
 
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
