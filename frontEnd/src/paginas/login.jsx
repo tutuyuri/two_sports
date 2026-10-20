@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LogIn } from "lucide-react";
 import { CardAutenticacao, CampoSenha } from "../reutilizavel/autenticacao.jsx";
 import { useNavigate } from "react-router-dom";
@@ -10,28 +10,28 @@ const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function Login() {
   const [mensagem, setMensagem] = useState({ tipo: "", texto: "" });
   const navegar = useNavigate()
+  const local = useLocation();
+  const voltarPara = local.state?.voltarPara ?? "/";
 
-  function enviar(evento) {
-    async function enviar(evento) {
-      evento.preventDefault();
+  async function enviar(evento) {
+    evento.preventDefault();
 
-      const dados = new FormData(evento.currentTarget);
-      const email = dados.get("email").trim();
-      const senha = dados.get("senha");
+    const dados = new FormData(evento.currentTarget);
+    const email = dados.get("email").trim();
+    const senha = dados.get("senha");
 
-      if (!EMAIL_VALIDO.test(email)) {
-        return setMensagem({ tipo: "erro", texto: "Digite um e-mail válido." });
-      }
-      if (senha.length < 6) {
-        return setMensagem({ tipo: "erro", texto: "A senha precisa ter no mínimo 6 caracteres." });
-      }
+    if (!EMAIL_VALIDO.test(email)) {
+      return setMensagem({ tipo: "erro", texto: "Digite um e-mail válido." });
+    }
+    if (senha.length < 6) {
+      return setMensagem({ tipo: "erro", texto: "A senha precisa ter no mínimo 6 caracteres." });
+    }
 
-      try {
-        await entrar({ email, senha });
-        navegar("/");
-      } catch (e) {
-        setMensagem({ tipo: "erro", texto: e.message });
-      }
+    try {
+      await entrar({ email, senha });
+      navegar(voltarPara);
+    } catch (e) {
+      setMensagem({ tipo: "erro", texto: e.message });
     }
   }
 
@@ -43,11 +43,16 @@ export function Login() {
       rodape={
         <>
           <span>Ainda não tem conta?</span>
-          <Link to="/registro">Criar conta</Link>
+          <Link to="/registro" state={local.state}>Criar conta</Link>
         </>
       }
     >
       <form className="autenticacao__form" onSubmit={enviar} noValidate>
+        {local.state?.voltarPara && (
+          <p className="autenticacao__mensagem">
+            Faça login para continuar sua compra.
+          </p>
+        )}
         <div className="campo">
           <label htmlFor="email">E-mail</label>
           <input

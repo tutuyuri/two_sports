@@ -1,0 +1,207 @@
+.produto {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+}
+
+/* ---------- Parte de cima: imagem + informações ---------- */
+
+.produto__topo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+    padding: 24px;
+
+    color: var(--cor-texto);
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--cor-superficie) 94%, var(--cor-destaque) 6%) 0%,
+        var(--cor-superficie) 60%
+    );
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 13%, transparent);
+    border-radius: 18px;
+    box-shadow: var(--sombra-card);
+}
+
+.produto__imagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+
+    background-color: color-mix(in srgb, var(--cor-superficie) 88%, var(--cor-destaque) 12%);
+    border-radius: 14px;
+}
+
+.produto__imagem img {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+
+.produto__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.produto__info h2 {
+    margin: 0;
+}
+
+.produto__resumo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+}
+
+.produto__separador {
+    opacity: 0.5;
+}
+
+.estrelas {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--cor-destaque);
+}
+
+.produto__preco {
+    font-size: 2rem;
+}
+
+.produto__frete {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--cor-sucesso);
+}
+
+.produto__descricao {
+    margin: 0;
+    color: var(--cor-texto-secundario);
+    line-height: 1.5;
+}
+
+/* ---------- Botões ---------- */
+
+.produto__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.produto__botao {
+    display: flex;
+    flex: 1 1 180px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 18px;
+
+    border-radius: 10px;
+    font-weight: 700;
+    transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.produto__botao:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.produto__botao:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+.produto__botao--principal {
+    color: var(--cor-botao-texto);
+    background-color: var(--cor-botao);
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 35%, transparent);
+}
+
+.produto__botao--principal:not(:disabled):hover {
+    background-color: var(--cor-botao-hover);
+}
+
+.produto__botao--secundario {
+    color: var(--cor-texto);
+    background-color: transparent;
+    border: 1px solid var(--cor-destaque);
+}
+
+.produto__botao--secundario:not(:disabled):hover {
+    background-color: color-mix(in srgb, var(--cor-destaque) 14%, transparent);
+}
+
+.produto__mensagem {
+    min-height: 1.4em;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.produto__mensagem--erro {
+    color: var(--cor-erro);
+}
+
+.produto__mensagem--sucesso {
+    color: var(--cor-sucesso);
+}
+
+/* ---------- Avaliações ---------- */
+
+.avaliacoes h3 {
+    margin: 0 0 14px;
+}
+
+.avaliacoes__lista {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.avaliacao {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda-divisoria);
+    border-radius: 12px;
+}
+
+.avaliacao p {
+    margin: 0;
+}
+
+.avaliacao__cabecalho {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.avaliacao__cabecalho span {
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 760px) {
+    .produto__topo {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+}

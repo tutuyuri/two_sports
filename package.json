@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vercel dev",
     "db:criar": "node --env-file=.env scripts/criar-tabelas.js",
-    "db:popular": "node --env-file=.env scripts/popular-produtos.js"
+    "db:popular": "node --env-file=.env scripts/popular-produtos.js",
+    "db:avaliacoes": "node --env-file=.env scripts/popular-avaliacoes.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
