@@ -28,6 +28,14 @@
     -webkit-backdrop-filter: blur(14px);
 }
 
+.cabecalho::after {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    filter: blur(10px) saturate(1.5);
+    z-index: -1;
+}
+
 .cabecalho_conteudo {
     display: flex;
     align-items: center;
