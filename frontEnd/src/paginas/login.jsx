@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LogIn } from "lucide-react";
 import { CardAutenticacao, CampoSenha } from "../reutilizavel/autenticacao.jsx";
+import { useSessao } from "../contexto/sessaoContexto.js";
 import { entrar } from "../services/auth.js";
 
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -11,6 +12,7 @@ export function Login() {
   const navegar = useNavigate()
   const local = useLocation();
   const voltarPara = local.state?.voltarPara ?? "/";
+  const { atualizar } = useSessao();
 
   async function enviar(evento) {
     evento.preventDefault();
@@ -28,6 +30,7 @@ export function Login() {
 
     try {
       await entrar({ email, senha });
+      await atualizar();
       navegar(voltarPara);
     } catch (e) {
       setMensagem({ tipo: "erro", texto: e.message });

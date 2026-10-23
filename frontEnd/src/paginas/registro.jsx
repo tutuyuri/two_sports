@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserPlus } from "lucide-react";
 import { CardAutenticacao, CampoSenha } from "../reutilizavel/autenticacao.jsx";
+import { useSessao } from "../contexto/sessaoContexto.js";
 import { registrar } from "../services/auth.js";
 
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -9,6 +10,8 @@ const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function Registro() {
   const [mensagem, setMensagem] = useState({ tipo: "", texto: "" });
   const local = useLocation();
+  const { atualizar } = useSessao();
+  const voltarPara = local.state?.voltarPara ?? "/";
   const navegar = useNavigate();
   
   async function enviar(evento) {
@@ -39,7 +42,9 @@ export function Registro() {
 
     try {
       await registrar({ nome, email, senha });
-      navegar(local.state?.voltarPara ?? "/");
+      await entrar({ email, senha });   // no registro: await registrar({ nome, email, senha });
+      await atualizar();
+      navegar(voltarPara);              // no registro: navegar(local.state?.voltarPara ?? "/");
     } catch (e) {
       setMensagem({ tipo: "erro", texto: e.message });
     }

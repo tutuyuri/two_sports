@@ -570,3 +570,28 @@
         font-size: 0.8125rem;
     }
 }
+
+.menu-usuario__nome,
+.menu-usuario__erro {
+    margin: 0;
+    padding: 10px 14px 8px;
+    overflow: hidden;
+    font-size: 0.85rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.menu-usuario__nome {
+    color: var(--cor-texto-secundario);
+    border-bottom: 1px solid var(--cor-borda-divisoria);
+}
+
+.menu-usuario__erro {
+    color: var(--cor-erro);
+    white-space: normal;
+}
+
+.botao-sair:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
