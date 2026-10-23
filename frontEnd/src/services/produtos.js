@@ -3,5 +3,6 @@ export async function getProdutos({ filtro = "todos" } = {}) {
   if (!res.ok) throw new Error("Não foi possível carregar os produtos.");
 
   const { produtos } = await res.json();
+  console.log(produtos)
   return produtos;
 }
