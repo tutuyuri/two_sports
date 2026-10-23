@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ShoppingCart, Star, Truck, Zap } from "lucide-react";
-import { getProdutos } from "../services/produtos.js";
+import { getProduto } from "../services/produtos.js";
 import { adicionarAoCarrinho, NaoAutenticado } from "../services/carrinho.js";
 import "./produto.css";
 
@@ -41,7 +41,7 @@ export function Produto() {
     setErro("");
     setMensagem({ tipo: "", texto: "" });
 
-    getProdutos(id)
+    getProduto(id)
       .then((resultado) => {
         if (!cancelado) setDados(resultado);
       })
@@ -91,7 +91,7 @@ export function Produto() {
       </>
     );
   }
-
+    if (!dados) return null;
   const { produto, avaliacoes, totalAvaliacoes } = dados;
 
   return (
