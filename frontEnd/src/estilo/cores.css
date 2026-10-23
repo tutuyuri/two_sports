@@ -70,7 +70,7 @@
     --sombra-card-hover: 0 12px 28px rgb(0 0 0 / 26%);
     --foco: #A294FF;
 
-    --gradiente-marca: linear-gradient(110deg, #20105cb0 0%, #3B0875b0 100%);
+    --gradiente-marca: linear-gradient(110deg, rgba(32, 16, 92, 0.69) 0%, rgba(59, 8, 117, 0.69) 100%);
     --gradiente-rodape: linear-gradient(110deg, #0B073B 0%, #31064B 100%);
 }
 
@@ -134,7 +134,7 @@
     --sombra-card-hover: 0 12px 28px rgb(28 20 80 / 13%);
     --foco: #6045E8;
 
-    --gradiente-marca: linear-gradient(110deg, #28146bb0 0%, #491680b0 100%);
+    --gradiente-marca: linear-gradient(110deg, rgba(40, 20, 107, 0.69) 0%, rgba(73, 22, 128, 0.69) 100%);
     --gradiente-rodape: linear-gradient(110deg, #E9E7FA 0%, #F2E9FA 100%);
 }
 
