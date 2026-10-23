@@ -1,4 +1,5 @@
 import { sql } from "../lib/db.js";
+import { categoriaDoProduto } from "../lib/categorias.js";
 
 const COTACAO_DOLAR = 5.5;
 const URL = "https://dummyjson.com/products/category/sports-accessories?limit=30";
@@ -24,7 +25,7 @@ for (const p of products) {
     INSERT INTO produtos
       (titulo, descricao, categoria, imagem, preco, nota, vendidos, frete_gratis)
     VALUES
-      (${p.title}, ${p.description}, ${p.category}, ${p.thumbnail},
+      (${p.title}, ${p.description}, ${categoriaDoProduto(p.title)}, ${p.thumbnail},
        ${preco}, ${nota}, ${vendidos}, ${freteGratis})
   `;
 }

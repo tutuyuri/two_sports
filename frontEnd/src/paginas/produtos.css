@@ -1,0 +1,150 @@
+/* ===================================================================== */
+/* CATÁLOGO DE PRODUTOS (grid com auto-fit)                              */
+/* ===================================================================== */
+
+.catalogo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    color: var(--cor-texto);
+}
+
+.catalogo__topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.catalogo__topo h2 {
+    margin: 0;
+}
+
+.catalogo__contagem {
+    margin: 4px 0 0;
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+}
+
+.catalogo__ordem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.catalogo__ordem select {
+    height: 40px;
+    padding: 0 12px;
+    color: var(--cor-texto-input);
+    background-color: var(--cor-input);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    font: inherit;
+}
+
+.catalogo__ordem select:focus-visible {
+    outline: 2px solid var(--cor-borda-focus);
+    outline-offset: 2px;
+}
+
+/* ---------- Chips ---------- */
+
+.catalogo__filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    padding: 8px 16px;
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.chip:hover {
+    border-color: var(--cor-destaque);
+}
+
+.chip:focus-visible {
+    outline: 2px solid var(--cor-borda-focus);
+    outline-offset: 2px;
+}
+
+.chip--ativo {
+    color: var(--cor-texto-invertido);
+    background-color: var(--cor-primaria-hover);
+    border-color: var(--cor-destaque);
+}
+
+/* ---------- Grid ---------- */
+
+.gradeProdutos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: opacity 0.2s ease;
+}
+
+.gradeProdutos--carregando {
+    opacity: 0.55;
+}
+
+.gradeProdutos li {
+    display: flex;
+    max-width: 320px;
+}
+
+.gradeProdutos li > * {
+    flex: 1;
+}
+
+/* ---------- Vazio e erro ---------- */
+
+.catalogo__erro {
+    margin: 0;
+    color: var(--cor-erro);
+    font-weight: 600;
+}
+
+.catalogo__vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 460px;
+    margin: 12px auto;
+    padding: 32px 24px;
+
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda-divisoria);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.catalogo__vazio svg {
+    color: var(--cor-destaque);
+}
+
+.catalogo__vazio h3,
+.catalogo__vazio p {
+    margin: 0;
+}
