@@ -5,12 +5,54 @@ import { ErroHttp, metodos, responderErro } from "../lib/http.js";
 import { esquemaPedido, validar } from "../lib/validacao.js";
 
 export default async function handler(req, res) {
-  if (!metodos(req, res, ["POST"])) return;
+  if (!metodos(req, res, ["GET", "POST"])) return;
 
   try {
     const sessao = await usuarioLogado(req);
     if (!sessao) throw new ErroHttp(401, "Faça login para continuar.");
 
+    res.setHeader("Cache-Control", "no-store");
+
+    // Listar as compras do usuário logado (mais recentes primeiro)
+    if (req.method === "GET") {
+      const linhas = await sql`
+        SELECT p.id, p.subtotal, p.frete, p.total, p.pagamento, p.status,
+              p.endereco, p.criado_em AS "criadoEm",
+              COALESCE(
+                json_agg(
+                  json_build_object(
+                    'id', i.id,
+                    'produtoId', i.produto_id,
+                    'titulo', i.titulo,
+                    'preco', i.preco_unitario,
+                    'quantidade', i.quantidade,
+                    'imagem', pr.imagem
+                  ) ORDER BY i.id
+                ) FILTER (WHERE i.id IS NOT NULL),
+                '[]'::json
+              ) AS itens
+        FROM pedidos p
+        LEFT JOIN pedido_itens i ON i.pedido_id = p.id
+        LEFT JOIN produtos pr ON pr.id = i.produto_id
+        WHERE p.usuario_id = ${sessao.id}
+        GROUP BY p.id
+        ORDER BY p.criado_em DESC
+        LIMIT 50
+      `;
+
+      // O driver devolve NUMERIC como texto: converte para número.
+      const pedidos = linhas.map((p) => ({
+        ...p,
+        subtotal: Number(p.subtotal),
+        frete: Number(p.frete),
+        total: Number(p.total),
+        itens: p.itens.map((item) => ({ ...item, preco: Number(item.preco) })),
+      }));
+
+      return res.status(200).json({ pedidos });
+    }
+
+    // Finalizar compra (POST)
     const { endereco, pagamento } = validar(esquemaPedido, req.body);
 
     // Os valores vêm sempre do banco, nunca do navegador.
@@ -40,7 +82,6 @@ export default async function handler(req, res) {
       SELECT id FROM novo
     `;
 
-    res.setHeader("Cache-Control", "no-store");
     res.status(201).json({ pedido: { id: pedido.id, pagamento, ...resumo } });
   } catch (e) {
     responderErro(res, e);

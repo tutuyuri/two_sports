@@ -1,0 +1,187 @@
+/* ===================================================================== */
+/* MINHAS COMPRAS                                                        */
+/* ===================================================================== */
+
+.historico {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    color: var(--cor-texto);
+}
+
+.pedido {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--cor-superficie) 94%, var(--cor-destaque) 6%) 0%,
+        var(--cor-superficie) 60%
+    );
+    border: 1px solid color-mix(in srgb, var(--cor-destaque) 13%, transparent);
+    border-radius: 16px;
+    box-shadow: var(--sombra-card);
+}
+
+.pedido__topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--cor-borda-divisoria);
+}
+
+.pedido__topo h2 {
+    margin: 0;
+}
+
+.pedido__data {
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+}
+
+.pedido__status {
+    padding: 4px 12px;
+    color: var(--cor-sucesso);
+    background-color: color-mix(in srgb, var(--cor-sucesso) 14%, transparent);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* ---------- Itens ---------- */
+
+.pedido__itens {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pedidoItem {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+}
+
+.pedidoItem__imagem {
+    width: 64px;
+    aspect-ratio: 1 / 1;
+    background-color: color-mix(in srgb, var(--cor-superficie) 88%, var(--cor-destaque) 12%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pedidoItem__imagem img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pedidoItem__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.pedidoItem__info a {
+    color: var(--cor-texto);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.pedidoItem__info a:hover {
+    color: var(--cor-destaque);
+}
+
+.pedidoItem__detalhe {
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+}
+
+/* ---------- Rodapé do pedido ---------- */
+
+.pedido__rodape {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--cor-borda-divisoria);
+}
+
+.pedido__entrega {
+    display: flex;
+    flex: 1 1 260px;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+}
+
+.pedido__entrega strong {
+    color: var(--cor-texto);
+}
+
+.pedido__totais {
+    display: grid;
+    gap: 6px;
+    min-width: 220px;
+    margin: 0;
+}
+
+.pedido__totais div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.pedido__totais dt {
+    color: var(--cor-texto-secundario);
+}
+
+.pedido__totais dd {
+    margin: 0;
+    font-weight: 600;
+}
+
+.pedido__total {
+    padding-top: 8px;
+    border-top: 1px solid var(--cor-borda-divisoria);
+    font-size: 1.1rem;
+}
+
+.pedido__total dt,
+.pedido__total dd {
+    color: var(--cor-texto);
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .pedido {
+        padding: 16px;
+    }
+
+    .pedidoItem {
+        grid-template-columns: 52px minmax(0, 1fr) auto;
+        gap: 10px;
+    }
+
+    .pedidoItem__imagem {
+        width: 52px;
+    }
+
+    .pedido__totais {
+        width: 100%;
+    }
+}

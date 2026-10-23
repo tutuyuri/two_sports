@@ -126,7 +126,7 @@ export function Header() {
             <nav className="menu" aria-label="Menu principal">
                 <div className="menu_links">
                   <Link to="/">Início</Link>
-                  <Link to="/produtos" title="Produtos">Minhas Compras</Link>
+                  <Link to="/minhas-compras" title="Minhas compras">Minhas Compras</Link>
                   <Link to="/carrinho" className="menu_carrinho icon" ><ShoppingCart size={22} /><span className="contador-carrinho" data-cart-count>0</span></Link>
                 </div>
             </nav>

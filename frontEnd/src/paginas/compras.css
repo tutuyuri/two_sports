@@ -373,3 +373,13 @@
         grid-template-columns: 1fr;
     }
 }
+
+.compras__botao--secundario {
+    color: var(--cor-texto);
+    background-color: transparent;
+    border: 1px solid var(--cor-destaque);
+}
+
+.compras__botao--secundario:hover {
+    background-color: color-mix(in srgb, var(--cor-destaque) 14%, transparent);
+}

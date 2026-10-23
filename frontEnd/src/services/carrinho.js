@@ -34,3 +34,5 @@ export const removerDoCarrinho = (produtoId) =>
 
 export const finalizarPedido = (dados) =>
   chamar("/api/pedidos", { method: "POST", body: JSON.stringify(dados) });
+
+export const getPedidos = () => chamar("/api/pedidos");
