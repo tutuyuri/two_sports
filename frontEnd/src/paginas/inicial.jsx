@@ -24,13 +24,6 @@ export function Inicio() {
       icone={PackageOpen}
     />,
     <Direcionaveis
-      titulo="Meios de pagamento"
-      descricao="Pague suas compras com rapidez e segurança."
-      textoBotao="Mostrar meios"
-      direcionamento="/configuracoes"
-      icone={CreditCardCheck}
-    />,
-    <Direcionaveis
       titulo="Menos de R$100,00"
       descricao="Confira produtos com preços baixos."
       textoBotao="Mostrar produtos"
