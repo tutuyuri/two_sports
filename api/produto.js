@@ -46,8 +46,14 @@ export default async function handler(req, res) {
 
 export async function getProduto(id) {
   const res = await fetch(`/api/produto?id=${encodeURIComponent(id)}`);
-  const dados = await res.json().catch(() => ({}));
+  const dados = await res.json().catch(() => null);
 
-  if (!res.ok) throw new Error(dados.erro ?? "Não foi possível carregar o produto.");
+  if (!res.ok) {
+    throw new Error(dados?.erro ?? "Não foi possível carregar o produto.");
+  }
+  if (!dados?.produto) {
+    throw new Error("O servidor devolveu uma resposta inesperada para este produto.");
+  }
+
   return dados; // { produto, avaliacoes, totalAvaliacoes }
 }
