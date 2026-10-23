@@ -41,7 +41,7 @@ export function Produto() {
     setErro("");
     setMensagem({ tipo: "", texto: "" });
 
-    getProdutos(id)
+    getProduto(id)
       .then((resultado) => {
         if (!cancelado) setDados(resultado);
       })
