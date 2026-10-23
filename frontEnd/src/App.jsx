@@ -12,6 +12,7 @@ import { Produtos } from './paginas/produtos.jsx';
 import { Produto } from './paginas/produto.jsx';
 import { Checkout } from './paginas/checkout.jsx';
 import { SessaoProvider } from './contexto/sessao.jsx';
+import { MinhasCompras } from './paginas/minhasCompras.jsx';
 
 
 function Layout() {
@@ -21,6 +22,8 @@ function Layout() {
     localizacao = "Início"
   } else if (location.pathname.startsWith("/produtos/")) {
     localizacao = "Produto"
+  } else if (location.pathname == "/minhas-compras") {
+    localizacao = "Minhas compras"
   } else { localizacao = location.pathname.replace("/", "")}
 
   return (
@@ -53,6 +56,7 @@ function App() {
             <Route path="termos" element={<Termos />} />
             <Route path="produtos/:id" element={<Produto />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="minhas-compras" element={<MinhasCompras />} />
           </Route>
         </Routes>
       </BrowserRouter>

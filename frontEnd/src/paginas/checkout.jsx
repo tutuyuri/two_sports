@@ -95,6 +95,9 @@ export function Checkout() {
         <Link to="/" className="compras__botao compras__botao--principal">
           Continuar comprando
         </Link>
+        <Link to="/minhas-compras" className="compras__botao compras__botao--secundario">
+          Ver minhas compras
+        </Link>
       </div>
     );
   }
