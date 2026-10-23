@@ -109,8 +109,12 @@ export function Header() {
 
   const pesquisaRef = useRef(null);
 
-  function focarPesquisa() {
-    pesquisaRef.current?.focus();
+    const navegar = useNavigate();
+
+  function pesquisar(evento) {
+    evento.preventDefault();
+    const texto = pesquisaRef.current.value.trim();
+    navegar(texto ? `/produtos?q=${encodeURIComponent(texto)}` : "/produtos");
   }
 
   return (
@@ -118,10 +122,12 @@ export function Header() {
         <div className="cabecalho_conteudo">
             <Link className="logo" to="/"></Link>
 
-            <div className="pesquisa" role="search" aria-label="Barra de pesquisa" >
+            <form className="pesquisa" role="search" aria-label="Barra de pesquisa" onSubmit={pesquisar}>
               <input type="text" name="search" id="pesquisa" placeholder="O que você está procurando?" title="Barra de pesquisa" ref={pesquisaRef} />
-              <Search size={20} className="iconPesquisa" color="#000" onClick={focarPesquisa} />
-            </div>
+              <button type="submit" className="iconPesquisa" aria-label="Pesquisar">
+                <Search size={20} />
+              </button>
+            </form>
 
             <nav className="menu" aria-label="Menu principal">
                 <div className="menu_links">

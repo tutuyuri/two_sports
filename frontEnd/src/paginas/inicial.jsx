@@ -20,21 +20,21 @@ export function Inicio() {
       titulo="Frete grátis"
       descricao="Benefício por ser sua primeira compra."
       textoBotao="Mostrar produtos"
-      direcionamento="/produtos"
+      direcionamento="/produtos?freteGratis=1"
       icone={PackageOpen}
     />,
     <Direcionaveis
       titulo="Menos de R$100,00"
       descricao="Confira produtos com preços baixos."
       textoBotao="Mostrar produtos"
-      direcionamento="/produtos"
+      direcionamento="/produtos?precoMax=100"
       icone={BanknoteArrowDown}
     />,
     <Direcionaveis
       titulo="Mais vendidos"
       descricao="Explore os produtos que são tendência."
       textoBotao="Ir para mais vendidos"
-      direcionamento="/produtos"
+      direcionamento="/produtos?ordem=vendidos"
       icone={ShoppingBasket}
     />,
     <Direcionaveis

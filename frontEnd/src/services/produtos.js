@@ -19,3 +19,30 @@ export async function getProduto(id) {
 
   return dados; // { produto, avaliacoes, totalAvaliacoes }
 }
+
+export async function buscarProdutos({
+  q = "",
+  categoria = "",
+  precoMax = 0,
+  freteGratis = false,
+  ordem = "relevancia",
+} = {}) {
+  const params = new URLSearchParams();
+  if (q) params.set("q", q);
+  if (categoria) params.set("categoria", categoria);
+  if (precoMax) params.set("precoMax", String(precoMax));
+  if (freteGratis) params.set("freteGratis", "1");
+  if (ordem !== "relevancia") params.set("ordem", ordem);
+
+  const res = await fetch(`/api/busca?${params}`);
+  const dados = await res.json().catch(() => null);
+
+  if (!res.ok) {
+    throw new Error(dados?.erro ?? "Não foi possível carregar os produtos.");
+  }
+  if (!dados?.produtos) {
+    throw new Error("O servidor devolveu uma resposta inesperada.");
+  }
+
+  return dados; // { produtos, total, categorias }
+}
