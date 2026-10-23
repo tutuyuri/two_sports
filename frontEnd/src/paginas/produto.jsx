@@ -91,7 +91,7 @@ export function Produto() {
       </>
     );
   }
-
+    if (!dados) return null;
   const { produto, avaliacoes, totalAvaliacoes } = dados;
 
   return (

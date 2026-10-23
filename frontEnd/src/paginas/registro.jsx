@@ -8,6 +8,7 @@ const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function Registro() {
   const [mensagem, setMensagem] = useState({ tipo: "", texto: "" });
+  const local = useLocation();
   const navegar = useNavigate();
   
   async function enviar(evento) {
