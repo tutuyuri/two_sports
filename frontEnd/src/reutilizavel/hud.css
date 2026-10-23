@@ -24,16 +24,8 @@
     color: var(--cor-texto-invertido);
     background: var(--gradiente-marca);
     box-shadow: 0 6px 24px rgb(0 0 0 / 16%);
-    backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-}
-
-.cabecalho::after {
-    content: "";
-    position: absolute;
-    inset: 0px;
-    filter: blur(10px) saturate(1.5);
-    z-index: -1;
+    backdrop-filter: blur(14px);
 }
 
 .cabecalho_conteudo {
