@@ -11,6 +11,7 @@ import { Privacidade } from './paginas/privacidade.jsx';
 import { Produtos } from './paginas/produtos.jsx';
 import { Produto } from './paginas/produto.jsx';
 import { Checkout } from './paginas/checkout.jsx';
+import { SessaoProvider } from './contexto/sessao.jsx';
 
 
 function Layout() {
@@ -38,22 +39,24 @@ function Layout() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Inicio />} />
-          <Route path="login" element={<Login />} />
-          <Route path="registro" element={<Registro />} />
-          <Route path="configuracoes" element={<Config />} />
-          <Route path="produtos" element={<Produtos />} />
-          <Route path="carrinho" element={<Carrinho />} />
-          <Route path="privacidade" element={<Privacidade />} />
-          <Route path="termos" element={<Termos />} />
-          <Route path="produtos/:id" element={<Produto />} />
-          <Route path="checkout" element={<Checkout />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <SessaoProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Inicio />} />
+            <Route path="login" element={<Login />} />
+            <Route path="registro" element={<Registro />} />
+            <Route path="configuracoes" element={<Config />} />
+            <Route path="produtos" element={<Produtos />} />
+            <Route path="carrinho" element={<Carrinho />} />
+            <Route path="privacidade" element={<Privacidade />} />
+            <Route path="termos" element={<Termos />} />
+            <Route path="produtos/:id" element={<Produto />} />
+            <Route path="checkout" element={<Checkout />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </SessaoProvider>
   );
 }
 

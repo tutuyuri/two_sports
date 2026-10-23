@@ -1,13 +1,18 @@
 import { useState, useEffect, useRef } from 'react'
 import { ShoppingCart, Search, User, LogIn, UserPlus, Settings, LogOut, ChevronDown } from "lucide-react";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSessao } from '../contexto/sessaoContexto.js';
 import './hud.css'
 
 
 function Usuario() {
 
   const [aberto, setAberto] = useState(false);
+  const [saindo, setSaindo] = useState(false);
+  const [falhou, setFalhou] = useState(false);
   const areaUsuarioRef = useRef(null);
+  const { usuario, sair } = useSessao();
+  const navegar = useNavigate();
 
   useEffect(() => {
     function handleClickFora(event) {
@@ -26,6 +31,20 @@ function Usuario() {
     };
   }, []);
 
+  async function sairDaConta() {
+    setSaindo(true);
+    setFalhou(false);
+
+    const saiu = await sair();
+
+    setSaindo(false);
+    if (saiu) {
+      setAberto(false);
+      navegar("/");
+    } else {
+      setFalhou(true);
+    }
+  }
 
   return (
     <div className="area-usuario" ref={areaUsuarioRef}>
@@ -42,25 +61,41 @@ function Usuario() {
       {aberto && (
         <div className="menu-usuario">
 
-          <Link to="/login">
-            <LogIn size={18} />
-            <span>Login</span>
-          </Link>
+          {usuario && (
+            <p className="menu-usuario__nome">
+              Olá, {usuario.nome.split(" ")[0]}
+            </p>
+          )}
 
-          <Link to="/registro">
-            <UserPlus size={18} />
-            <span>Registrar-se</span>
-          </Link>
+          {usuario === null && (
+            <>
+              <Link to="/login">
+                <LogIn size={18} />
+                <span>Login</span>
+              </Link>
+
+              <Link to="/registro">
+                <UserPlus size={18} />
+                <span>Registrar-se</span>
+              </Link>
+            </>
+          )}
 
           <Link to="/configuracoes">
             <Settings size={18} />
             <span>Configurações</span>
           </Link>
 
-          <button className="botao-sair">
-            <LogOut size={18} />
-            <span>Sair</span>
-          </button>
+          {usuario && (
+            <button className="botao-sair" onClick={sairDaConta} disabled={saindo}>
+              <LogOut size={18} />
+              <span>{saindo ? "Saindo..." : "Sair"}</span>
+            </button>
+          )}
+
+          {falhou && (
+            <p className="menu-usuario__erro">Não foi possível sair. Tente de novo.</p>
+          )}
 
         </div>
       )}
