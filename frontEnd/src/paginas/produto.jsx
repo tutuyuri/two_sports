@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ShoppingCart, Star, Truck, Zap } from "lucide-react";
-import { getProdutos } from "../services/produtos.js";
+import { getProduto } from "../services/produtos.js";
 import { adicionarAoCarrinho, NaoAutenticado } from "../services/carrinho.js";
 import "./produto.css";
 
