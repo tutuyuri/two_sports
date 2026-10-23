@@ -10,6 +10,7 @@ import { Carrinho } from './paginas/carrinho.jsx';
 import { Privacidade } from './paginas/privacidade.jsx';
 import { Produtos } from './paginas/produtos.jsx';
 import { Produto } from './paginas/produto.jsx';
+import { Checkout } from './paginas/checkout.jsx';
 
 
 function Layout() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="privacidade" element={<Privacidade />} />
           <Route path="termos" element={<Termos />} />
           <Route path="produtos/:id" element={<Produto />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
       </Routes>
     </BrowserRouter>
