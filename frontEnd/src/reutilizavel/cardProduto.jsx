@@ -9,7 +9,7 @@ const moeda = new Intl.NumberFormat("pt-BR", {
 
 export function CardProduto({ produto }) {
   return (
-    <Link to="/produtos" className="cardProduto">
+    <Link to={`/produtos/${produto.id}`} className="cardProduto">
       <img
         className="cardProduto__imagem"
         src={produto.imagem}

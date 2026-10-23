@@ -48,7 +48,7 @@
     height: 82px;
 
     background-color: var(--cor-fundo-logo);
-    background-image: url("two-sports-logo.svg");
+    background-image: url("/two-sports-logo.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserPlus } from "lucide-react";
 import { CardAutenticacao, CampoSenha } from "../reutilizavel/autenticacao.jsx";
-import { useNavigate } from "react-router-dom";
 import { registrar } from "../services/auth.js";
 
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,7 +38,7 @@ export function Registro() {
 
     try {
       await registrar({ nome, email, senha });
-      navegar("/");
+      navegar(local.state?.voltarPara ?? "/");
     } catch (e) {
       setMensagem({ tipo: "erro", texto: e.message });
     }
@@ -53,7 +52,7 @@ export function Registro() {
       rodape={
         <>
           <span>Já possui uma conta?</span>
-          <Link to="/login">Entrar</Link>
+          <Link to="/login" state={local.state}>Entrar</Link>
         </>
       }
     >
