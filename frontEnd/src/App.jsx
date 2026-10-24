@@ -26,6 +26,10 @@ function Layout() {
     localizacao = "Minhas compras"
   } else if (location.pathname == "/configuracoes") {
     localizacao = "Configurações"
+  } else if (location.pathname == "/termos") {
+    localizacao = "Termos de uso"
+  } else if (location.pathname == "/privacidade") {
+    localizacao = "Política de privacidade"
   } else { localizacao = location.pathname.replace("/", "")}
 
   return (
