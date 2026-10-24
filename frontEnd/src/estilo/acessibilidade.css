@@ -1,0 +1,152 @@
+/* ===================================================================== */
+/* ACESSIBILIDADE                                                        */
+/* Ativado por atributos no <html>, definidos em utils/preferencias.js   */
+/* ===================================================================== */
+
+/* ---------- Tamanho do texto ---------- */
+/* Mantém os tamanhos atuais (18px no desktop, 16px no celular) no "normal". */
+
+:root {
+    font-size: calc(18px * var(--escala-texto, 1));
+}
+
+@media (max-width: 1024px) {
+    :root {
+        font-size: calc(16px * var(--escala-texto, 1));
+    }
+}
+
+:root[data-texto="grande"] {
+    --escala-texto: 1.15;
+}
+
+:root[data-texto="maior"] {
+    --escala-texto: 1.3;
+}
+
+/* Tamanhos que estavam fixos em px no App.css */
+body {
+    font-size: calc(16px * var(--escala-texto, 1));
+}
+
+main h1 {
+    font-size: calc(32px * var(--escala-texto, 1));
+}
+
+main h2 {
+    font-size: calc(22px * var(--escala-texto, 1));
+}
+
+main p {
+    font-size: calc(16px * var(--escala-texto, 1));
+}
+
+/* ---------- Reduzir animações ---------- */
+
+:root[data-movimento="reduzido"] *,
+:root[data-movimento="reduzido"] *::before,
+:root[data-movimento="reduzido"] *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+
+/* ---------- Sublinhar links ---------- */
+
+:root[data-links="sublinhados"] a:not(.logo) {
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+}
+
+/* ---------- Alto contraste (escuro) ---------- */
+
+:root[data-contraste="alto"][data-theme="dark"] {
+    --cor-primaria: #0a0aa0;
+    --cor-secundaria: #0a0aa0;
+    --cor-primaria-hover: #0a0aa0;
+    --cor-destaque: #ffe14d;
+
+    --cor-fundo: #000000;
+    --cor-superficie: #000000;
+    --cor-superficie-hover: #1a1a1a;
+    --cor-painel-atalho: #000000;
+    --cor-cabecalho: #000000;
+    --cor-rodape: #000000;
+
+    --cor-texto: #ffffff;
+    --cor-texto-secundario: #ffffff;
+    --cor-texto-painel: #ffffff;
+
+    --cor-borda: #ffffff;
+    --cor-borda-focus: #ffe14d;
+    --cor-borda-divisoria: #ffffff;
+    --cor-borda-rodape: #ffffff;
+
+    --cor-input: #ffffff;
+    --cor-input-focus: #ffffff;
+    --cor-texto-input: #000000;
+    --cor-placeholder: #333333;
+
+    --cor-botao: #0a0aa0;
+    --cor-botao-hover: #2a2ad0;
+    --cor-botao-texto: #ffffff;
+    --cor-botao-direcionaveis: #000000;
+    --cor-botao-hover-direcionaveis: #2a2ad0;
+    --cor-botao-texto-direcionaveis: #ffffff;
+    --cor-botao-hover-texto-direcionaveis: #ffffff;
+
+    --cor-sucesso: #5dff9f;
+    --cor-erro: #ff8a8a;
+    --cor-aviso: #ffe14d;
+
+    --foco: #ffe14d;
+    --gradiente-marca: #000000;
+    --gradiente-rodape: #000000;
+}
+
+/* ---------- Alto contraste (claro) ---------- */
+
+:root[data-contraste="alto"][data-theme="light"] {
+    --cor-primaria: #000000;
+    --cor-secundaria: #000000;
+    --cor-primaria-hover: #000000;
+    --cor-destaque: #0000b8;
+
+    --cor-fundo: #ffffff;
+    --cor-superficie: #ffffff;
+    --cor-superficie-hover: #eeeeee;
+    --cor-painel-atalho: #ffffff;
+    --cor-cabecalho: #ffffff;
+    --cor-rodape: #ffffff;
+
+    --cor-texto: #000000;
+    --cor-texto-secundario: #000000;
+    --cor-texto-painel: #000000;
+
+    --cor-borda: #000000;
+    --cor-borda-focus: #0000b8;
+    --cor-borda-divisoria: #000000;
+    --cor-borda-rodape: #000000;
+
+    --cor-input: #ffffff;
+    --cor-input-focus: #ffffff;
+    --cor-texto-input: #000000;
+    --cor-placeholder: #444444;
+
+    --cor-botao: #000000;
+    --cor-botao-hover: #222222;
+    --cor-botao-texto: #ffffff;
+    --cor-botao-direcionaveis: #ffffff;
+    --cor-botao-hover-direcionaveis: #dddddd;
+    --cor-botao-texto-direcionaveis: #000000;
+    --cor-botao-hover-texto-direcionaveis: #000000;
+
+    --cor-sucesso: #006b2f;
+    --cor-erro: #a00000;
+    --cor-aviso: #6b4300;
+
+    --foco: #0000b8;
+    --gradiente-marca: #ffffff;
+    --gradiente-rodape: #ffffff;
+}
