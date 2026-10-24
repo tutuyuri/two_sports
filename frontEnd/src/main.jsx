@@ -3,8 +3,10 @@ import { createRoot } from 'react-dom/client'
 import "./estilo/cores.css"
 import './index.css'
 import { App } from './App.jsx'
+import './estilo/acessibilidade.css'
+import { iniciarPreferencias } from './utils/preferencias.js'
 
-document.documentElement.setAttribute('data-theme', 'light');
+iniciarPreferencias();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

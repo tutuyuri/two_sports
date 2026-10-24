@@ -24,6 +24,8 @@ function Layout() {
     localizacao = "Produto"
   } else if (location.pathname == "/minhas-compras") {
     localizacao = "Minhas compras"
+  } else if (location.pathname == "/configuracoes") {
+    localizacao = "Configurações"
   } else { localizacao = location.pathname.replace("/", "")}
 
   return (

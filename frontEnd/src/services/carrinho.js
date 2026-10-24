@@ -1,6 +1,6 @@
 export class NaoAutenticado extends Error {}
 
-async function chamar(url, opcoes = {}) {
+export async function chamar(url, opcoes = {}) {
   const res = await fetch(url, {
     ...opcoes,
     headers: { "Content-Type": "application/json", ...opcoes.headers },
