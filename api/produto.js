@@ -10,8 +10,8 @@ export default async function handler(req, res) {
       throw new ErroHttp(400, "Produto inválido.");
     }
 
-    const [produto] = await sql`
-      SELECT id, titulo, descricao, imagem, preco, nota, vendidos,
+        const [produto] = await sql`
+      SELECT id, titulo, descricao, categoria, imagem, preco, nota, vendidos,
       frete_gratis AS "freteGratis"
       FROM produtos
       WHERE id = ${id}

@@ -15,6 +15,12 @@ import { SessaoProvider } from './contexto/sessao.jsx';
 import { MinhasCompras } from './paginas/minhasCompras.jsx';
 import { EsqueciSenha } from './paginas/esqueciSenha.jsx';
 import { RedefinirSenha } from './paginas/redefinirSenha.jsx';
+import { RotaAdmin } from './reutilizavel/rotaAdmin.jsx';
+import { Admin } from './paginas/admin.jsx';
+import { AdminProdutos } from './paginas/adminProdutos.jsx';
+import { AdminProdutoForm } from './paginas/adminProdutoForm.jsx';
+import { AdminCores } from './paginas/adminCores.jsx';
+import { AdminAdmins } from './paginas/adminAdmins.jsx';
 
 
 function Layout() {
@@ -36,6 +42,8 @@ function Layout() {
     localizacao = "Esqueci minha senha"
   } else if (location.pathname == "/redefinir-senha") {
     localizacao = "Redefinir senha"
+  } else if (location.pathname.startsWith("/admin")) {
+    localizacao = "Administração"
   } else { localizacao = location.pathname.replace("/", "")}
 
   return (
@@ -71,6 +79,12 @@ function App() {
             <Route path="produtos/:id" element={<Produto />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="minhas-compras" element={<MinhasCompras />} />
+            <Route path="admin" element={<RotaAdmin><Admin /></RotaAdmin>} />
+            <Route path="admin/produtos" element={<RotaAdmin><AdminProdutos /></RotaAdmin>} />
+            <Route path="admin/produtos/novo" element={<RotaAdmin><AdminProdutoForm /></RotaAdmin>} />
+            <Route path="admin/produtos/:id" element={<RotaAdmin><AdminProdutoForm /></RotaAdmin>} />
+            <Route path="admin/cores" element={<RotaAdmin><AdminCores /></RotaAdmin>} />
+            <Route path="admin/administradores" element={<RotaAdmin><AdminAdmins /></RotaAdmin>} />
           </Route>
         </Routes>
       </BrowserRouter>
