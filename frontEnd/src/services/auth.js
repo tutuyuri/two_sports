@@ -19,3 +19,9 @@ export async function usuarioAtual() {
   if (!res.ok) return null;
   return (await res.json()).usuario;
 }
+
+export const pedirRedefinicao = (email) =>
+  requisitar("/api/auth/esqueci-senha", { email });
+
+export const redefinirSenha = (token, novaSenha) =>
+  requisitar("/api/auth/redefinir-senha", { token, novaSenha });

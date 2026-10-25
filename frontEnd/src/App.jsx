@@ -13,6 +13,8 @@ import { Produto } from './paginas/produto.jsx';
 import { Checkout } from './paginas/checkout.jsx';
 import { SessaoProvider } from './contexto/sessao.jsx';
 import { MinhasCompras } from './paginas/minhasCompras.jsx';
+import { EsqueciSenha } from './paginas/esqueciSenha.jsx';
+import { RedefinirSenha } from './paginas/redefinirSenha.jsx';
 
 
 function Layout() {
@@ -30,6 +32,10 @@ function Layout() {
     localizacao = "Termos de uso"
   } else if (location.pathname == "/privacidade") {
     localizacao = "Política de privacidade"
+  } else if (location.pathname == "/esqueci-senha") {
+    localizacao = "Esqueci minha senha"
+  } else if (location.pathname == "/redefinir-senha") {
+    localizacao = "Redefinir senha"
   } else { localizacao = location.pathname.replace("/", "")}
 
   return (
@@ -55,6 +61,8 @@ function App() {
             <Route index element={<Inicio />} />
             <Route path="login" element={<Login />} />
             <Route path="registro" element={<Registro />} />
+            <Route path="esqueci-senha" element={<EsqueciSenha />} />
+            <Route path="redefinir-senha" element={<RedefinirSenha />} />
             <Route path="configuracoes" element={<Config />} />
             <Route path="produtos" element={<Produtos />} />
             <Route path="carrinho" element={<Carrinho />} />

@@ -85,7 +85,7 @@ export function Config() {
         {conta && (
           <>
             <SecaoConta conta={conta} aoAtualizarConta={setConta} aoExpirar={aoExpirar} />
-            <SecaoSeguranca aoExpirar={aoExpirar} />
+            <SecaoSeguranca conta={conta} aoAtualizarConta={setConta} aoExpirar={aoExpirar} />
           </>
         )}
 
@@ -94,7 +94,7 @@ export function Config() {
         {conta && (
           <>
             <SecaoNotificacoes conta={conta} aoAtualizarConta={setConta} aoExpirar={aoExpirar} />
-            <SecaoExcluirConta aoExpirar={aoExpirar} />
+            <SecaoExcluirConta conta={conta} aoExpirar={aoExpirar} />
           </>
         )}
       </div>

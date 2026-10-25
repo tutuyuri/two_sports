@@ -10,7 +10,8 @@
     "db:avaliacoes": "node --env-file=.env scripts/popular-avaliacoes.js",
     "db:pedidos": "node --env-file=.env scripts/criar-pedidos.js",
     "db:categorias": "node --env-file=.env scripts/definir-categorias.js",
-    "db:usuarios": "node --env-file=.env scripts/atualizar-usuarios.js"
+    "db:usuarios": "node --env-file=.env scripts/atualizar-usuarios.js",
+    "db:login": "node --env-file=.env scripts/atualizar-login.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",

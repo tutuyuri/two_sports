@@ -15,6 +15,7 @@ function montarConta(u) {
     id: u.id,
     nome: u.nome,
     email: u.email,
+    temSenha: u.temSenha,
     notificacoes: { ...NOTIFICACOES_PADRAO, ...(u.preferencias?.notificacoes ?? {}) },
   };
 }
@@ -30,7 +31,8 @@ export default async function handler(req, res) {
 
     if (req.method === "GET") {
       const [u] = await sql`
-        SELECT id, nome, email, preferencias FROM usuarios WHERE id = ${sessao.id}
+        SELECT id, nome, email, preferencias, (senha_hash IS NOT NULL) AS "temSenha"
+        FROM usuarios WHERE id = ${sessao.id}
       `;
       if (!u) throw new ErroHttp(401, "Você não está logado.");
       return res.status(200).json({ conta: montarConta(u) });
@@ -44,7 +46,7 @@ export default async function handler(req, res) {
       const [u] = await sql`
         UPDATE usuarios SET nome = ${nome}
         WHERE id = ${sessao.id}
-        RETURNING id, nome, email, preferencias
+        RETURNING id, nome, email, preferencias, (senha_hash IS NOT NULL) AS "temSenha"
       `;
       if (!u) throw new ErroHttp(401, "Você não está logado.");
       return res.status(200).json({ conta: montarConta(u) });
@@ -54,12 +56,18 @@ export default async function handler(req, res) {
       const { senhaAtual, novaSenha } = validar(esquemaSenha, req.body);
 
       const [u] = await sql`SELECT senha_hash FROM usuarios WHERE id = ${sessao.id}`;
-      const confere = u ? await conferirSenha(senhaAtual, u.senha_hash) : false;
+      if (!u) throw new ErroHttp(401, "Você não está logado.");
 
+      // Conta com senha: confere a atual. Conta só do Google: está criando a primeira.
       // Atenção: 400 e não 401, senão o site entenderia como "sessão expirada".
-      if (!confere) throw new ErroHttp(400, "A senha atual está incorreta.");
-      if (senhaAtual === novaSenha) {
-        throw new ErroHttp(400, "A nova senha precisa ser diferente da atual.");
+      if (u.senha_hash) {
+        if (!senhaAtual) throw new ErroHttp(400, "Digite sua senha atual.");
+        if (!(await conferirSenha(senhaAtual, u.senha_hash))) {
+          throw new ErroHttp(400, "A senha atual está incorreta.");
+        }
+        if (senhaAtual === novaSenha) {
+          throw new ErroHttp(400, "A nova senha precisa ser diferente da atual.");
+        }
       }
 
       const hash = await gerarHash(novaSenha);
@@ -75,7 +83,7 @@ export default async function handler(req, res) {
           preferencias, '{notificacoes}', ${JSON.stringify(notificacoes)}::jsonb, true
         )
         WHERE id = ${sessao.id}
-        RETURNING id, nome, email, preferencias
+        RETURNING id, nome, email, preferencias, (senha_hash IS NOT NULL) AS "temSenha"
       `;
       if (!u) throw new ErroHttp(401, "Você não está logado.");
       return res.status(200).json({ conta: montarConta(u) });
