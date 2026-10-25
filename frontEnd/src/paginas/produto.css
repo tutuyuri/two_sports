@@ -205,3 +205,15 @@
         padding: 16px;
     }
 }
+
+.produto__semImagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    color: var(--cor-texto-secundario);
+    border: 1px dashed var(--cor-borda);
+    border-radius: 12px;
+}

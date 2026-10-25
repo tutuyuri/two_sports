@@ -1,28 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { ShoppingCart, Star, Truck, Zap } from "lucide-react";
+import { ShoppingCart, Zap } from "lucide-react";
 import { getProduto } from "../services/produtos.js";
 import { adicionarAoCarrinho, NaoAutenticado } from "../services/carrinho.js";
+import { DetalheProduto } from "../reutilizavel/detalheProduto.jsx";
 import "./produto.css";
-
-const moeda = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-});
-
-function Estrelas({ nota, tamanho = 18 }) {
-  return (
-    <span className="estrelas" role="img" aria-label={`Nota ${nota.toFixed(1)} de 5`}>
-      {[1, 2, 3, 4, 5].map((n) => (
-        <Star
-          key={n}
-          size={tamanho}
-          fill={n <= Math.round(nota) ? "currentColor" : "none"}
-        />
-      ))}
-    </span>
-  );
-}
 
 export function Produto() {
   const { id } = useParams();
@@ -71,7 +53,6 @@ export function Produto() {
       }
     } catch (e) {
       if (e instanceof NaoAutenticado) {
-        // Não está logado: vai para o login e volta para este produto depois.
         navegar("/login", { state: { voltarPara: local.pathname } });
       } else {
         setMensagem({ tipo: "erro", texto: e.message });
@@ -91,37 +72,16 @@ export function Produto() {
       </>
     );
   }
-    if (!dados) return null;
-  const { produto, avaliacoes, totalAvaliacoes } = dados;
+
+  if (!dados) return null;
 
   return (
-    <article className="produto">
-      <div className="produto__topo">
-        <div className="produto__imagem">
-          <img src={produto.imagem} alt={produto.titulo} />
-        </div>
-
-        <div className="produto__info">
-          <h2>{produto.titulo}</h2>
-
-          <div className="produto__resumo">
-            <Estrelas nota={produto.nota} />
-            <strong>{produto.nota.toFixed(1)}</strong>
-            <span>({totalAvaliacoes} avaliações)</span>
-            <span className="produto__separador">|</span>
-            <span>{produto.vendidos} vendidos</span>
-          </div>
-
-          <strong className="produto__preco">{moeda.format(produto.preco)}</strong>
-
-          {produto.freteGratis && (
-            <span className="produto__frete">
-              <Truck size={16} /> Frete grátis
-            </span>
-          )}
-
-          <p className="produto__descricao">{produto.descricao}</p>
-
+    <DetalheProduto
+      produto={dados.produto}
+      avaliacoes={dados.avaliacoes}
+      totalAvaliacoes={dados.totalAvaliacoes}
+      acoes={
+        <>
           <div className="produto__acoes">
             <button
               type="button"
@@ -148,27 +108,8 @@ export function Produto() {
           >
             {mensagem.texto}
           </p>
-        </div>
-      </div>
-
-      <section className="avaliacoes" aria-labelledby="titulo-avaliacoes">
-        <h3 id="titulo-avaliacoes">Avaliações</h3>
-
-        {avaliacoes.length === 0 && <p>Este produto ainda não tem avaliações.</p>}
-
-        <ul className="avaliacoes__lista">
-          {avaliacoes.map((a) => (
-            <li key={a.id} className="avaliacao">
-              <div className="avaliacao__cabecalho">
-                <strong>{a.autor}</strong>
-                <span>{new Date(a.criadoEm).toLocaleDateString("pt-BR")}</span>
-              </div>
-              <Estrelas nota={a.nota} tamanho={14} />
-              <p>{a.comentario}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </article>
+        </>
+      }
+    />
   );
 }

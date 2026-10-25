@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { ShoppingCart, Search, User, LogIn, UserPlus, Settings, LogOut, ChevronDown } from "lucide-react";
+import { ShoppingCart, Search, User, LogIn, UserPlus, Settings, LogOut, ChevronDown, ShieldCheck } from "lucide-react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSessao } from '../contexto/sessaoContexto.js';
 import './hud.css'
@@ -85,6 +85,13 @@ function Usuario() {
             <Settings size={18} />
             <span>Configurações</span>
           </Link>
+
+          {usuario?.admin && (
+            <Link to="/admin">
+              <ShieldCheck size={18} />
+              <span>Painel admin</span>
+            </Link>
+          )}
 
           {usuario && (
             <button className="botao-sair" onClick={sairDaConta} disabled={saindo}>
