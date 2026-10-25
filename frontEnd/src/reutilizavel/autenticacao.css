@@ -246,3 +246,66 @@
         border-radius: 14px;
     }
 }
+
+/* ---------- Entrar com o Google ---------- */
+
+.autenticacao__google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 48px;
+
+    color: #1f1f1f;
+    background-color: #ffffff;
+    border: 1px solid #747775;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.autenticacao__google:hover {
+    background-color: #f2f2f2;
+}
+
+.autenticacao__google:focus-visible {
+    outline: 2px solid var(--foco);
+    outline-offset: 2px;
+}
+
+.autenticacao__divisor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0;
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+}
+
+.autenticacao__divisor::before,
+.autenticacao__divisor::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--cor-borda-divisoria);
+}
+
+.autenticacao__ajuda {
+    align-self: flex-end;
+    margin-top: -6px;
+    color: var(--cor-destaque);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.autenticacao__texto {
+    margin: 0;
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+}
+
+a.autenticacao__botao {
+    text-decoration: none;
+}

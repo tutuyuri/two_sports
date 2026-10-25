@@ -10,13 +10,22 @@ export default async function handler(req, res) {
     const sessao = await usuarioLogado(req);
     if (!sessao) throw new ErroHttp(401, "Faça login para continuar.");
 
-    const { senha } = validar(esquemaExcluirConta, req.body);
+    const { senha, confirmacao } = validar(esquemaExcluirConta, req.body);
 
-    const [usuario] = await sql`SELECT senha_hash FROM usuarios WHERE id = ${sessao.id}`;
-    const confere = usuario ? await conferirSenha(senha, usuario.senha_hash) : false;
-    if (!confere) throw new ErroHttp(400, "Senha incorreta.");
+    const [usuario] = await sql`
+      SELECT email, senha_hash FROM usuarios WHERE id = ${sessao.id}
+    `;
+    if (!usuario) throw new ErroHttp(401, "Você não está logado.");
 
-    // Pedidos, itens dos pedidos e carrinho são apagados junto (ON DELETE CASCADE).
+    if (usuario.senha_hash) {
+      if (!senha || !(await conferirSenha(senha, usuario.senha_hash))) {
+        throw new ErroHttp(400, "Senha incorreta.");
+      }
+    } else if (confirmacao.toLowerCase() !== usuario.email) {
+      throw new ErroHttp(400, "Digite o e-mail da sua conta para confirmar.");
+    }
+
+    // Pedidos, itens dos pedidos, carrinho e pedidos de redefinição saem junto (CASCADE).
     await sql`DELETE FROM usuarios WHERE id = ${sessao.id}`;
 
     encerrarSessao(res);

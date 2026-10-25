@@ -95,7 +95,7 @@ export function SecaoConta({ conta, aoAtualizarConta, aoExpirar }) {
 
 /* ------------------------------ Segurança ----------------------------- */
 
-export function SecaoSeguranca({ aoExpirar }) {
+export function SecaoSeguranca({ conta, aoAtualizarConta, aoExpirar }) {
   const [mensagem, setMensagem] = useState(VAZIA);
   const [salvando, setSalvando] = useState(false);
 
@@ -103,11 +103,11 @@ export function SecaoSeguranca({ aoExpirar }) {
     evento.preventDefault();
     const form = evento.currentTarget;
     const dados = new FormData(form);
-    const senhaAtual = dados.get("senhaAtual");
+    const senhaAtual = dados.get("senhaAtual") ?? "";
     const novaSenha = dados.get("novaSenha");
     const confirmar = dados.get("confirmarNovaSenha");
 
-    if (!senhaAtual) {
+    if (conta.temSenha && !senhaAtual) {
       return setMensagem({ tipo: "erro", texto: "Digite sua senha atual." });
     }
     if (novaSenha.length < 6) {
@@ -125,7 +125,11 @@ export function SecaoSeguranca({ aoExpirar }) {
     try {
       await alterarSenha(senhaAtual, novaSenha);
       form.reset();
-      setMensagem({ tipo: "sucesso", texto: "Senha alterada com sucesso." });
+      aoAtualizarConta({ ...conta, temSenha: true });
+      setMensagem({
+        tipo: "sucesso",
+        texto: conta.temSenha ? "Senha alterada com sucesso." : "Senha criada com sucesso.",
+      });
     } catch (e) {
       if (e instanceof NaoAutenticado) aoExpirar();
       else setMensagem({ tipo: "erro", texto: e.message });
@@ -135,15 +139,25 @@ export function SecaoSeguranca({ aoExpirar }) {
   }
 
   return (
-    <SecaoConfig id="seguranca" titulo="Segurança" descricao="Troque a senha da sua conta.">
+    <SecaoConfig
+      id="seguranca"
+      titulo="Segurança"
+      descricao={
+        conta.temSenha
+          ? "Troque a senha da sua conta."
+          : "Você entrou com o Google e ainda não tem senha. Crie uma para também poder entrar com e-mail e senha."
+      }
+    >
       <form className="configForm" onSubmit={enviar} noValidate>
-        <CampoSenha
-          id="config-senha-atual"
-          name="senhaAtual"
-          rotulo="Senha atual"
-          placeholder="Digite sua senha atual"
-          autoComplete="current-password"
-        />
+        {conta.temSenha && (
+          <CampoSenha
+            id="config-senha-atual"
+            name="senhaAtual"
+            rotulo="Senha atual"
+            placeholder="Digite sua senha atual"
+            autoComplete="current-password"
+          />
+        )}
         <CampoSenha
           id="config-nova-senha"
           name="novaSenha"
@@ -166,7 +180,7 @@ export function SecaoSeguranca({ aoExpirar }) {
           className="botaoConfig botaoConfig--principal"
           disabled={salvando}
         >
-          {salvando ? "Salvando..." : "Alterar senha"}
+          {salvando ? "Salvando..." : conta.temSenha ? "Alterar senha" : "Criar senha"}
         </button>
       </form>
     </SecaoConfig>
@@ -244,7 +258,7 @@ export function SecaoNotificacoes({ conta, aoAtualizarConta, aoExpirar }) {
 
 /* ---------------------------- Excluir conta --------------------------- */
 
-export function SecaoExcluirConta({ aoExpirar }) {
+export function SecaoExcluirConta({ conta, aoExpirar }) {
   const navegar = useNavigate();
   const { atualizar } = useSessao();
   const [aberto, setAberto] = useState(false);
@@ -254,10 +268,14 @@ export function SecaoExcluirConta({ aoExpirar }) {
   async function enviar(evento) {
     evento.preventDefault();
     const dados = new FormData(evento.currentTarget);
-    const senha = dados.get("senha");
+    const senha = dados.get("senha") ?? "";
+    const confirmacao = dados.get("confirmacao") ?? "";
 
-    if (!senha) {
+    if (conta.temSenha && !senha) {
       return setMensagem({ tipo: "erro", texto: "Digite sua senha para confirmar." });
+    }
+    if (!conta.temSenha && !confirmacao) {
+      return setMensagem({ tipo: "erro", texto: "Digite o e-mail da conta para confirmar." });
     }
     if (dados.get("entendo") !== "on") {
       return setMensagem({ tipo: "erro", texto: "Marque a confirmação para continuar." });
@@ -266,7 +284,7 @@ export function SecaoExcluirConta({ aoExpirar }) {
     setExcluindo(true);
     setMensagem(VAZIA);
     try {
-      await excluirConta(senha);
+      await excluirConta({ senha, confirmacao });
       await atualizar(); // o servidor já encerrou a sessão
       navegar("/");
     } catch (e) {
@@ -298,13 +316,27 @@ export function SecaoExcluirConta({ aoExpirar }) {
             perfil, seu carrinho e todo o seu histórico de compras.
           </p>
 
-          <CampoSenha
-            id="excluir-senha"
-            name="senha"
-            rotulo="Digite sua senha para confirmar"
-            placeholder="Sua senha"
-            autoComplete="current-password"
-          />
+          {conta.temSenha ? (
+            <CampoSenha
+              id="excluir-senha"
+              name="senha"
+              rotulo="Digite sua senha para confirmar"
+              placeholder="Sua senha"
+              autoComplete="current-password"
+            />
+          ) : (
+            <div className="campo">
+              <label htmlFor="excluir-confirmacao">
+                Digite o e-mail da conta ({conta.email}) para confirmar
+              </label>
+              <input
+                id="excluir-confirmacao"
+                name="confirmacao"
+                type="email"
+                autoComplete="off"
+              />
+            </div>
+          )}
 
           <label className="campo__check">
             <input type="checkbox" name="entendo" />

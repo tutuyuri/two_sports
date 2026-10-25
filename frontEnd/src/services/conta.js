@@ -20,8 +20,8 @@ export const salvarNotificacoes = (notificacoes) =>
     body: JSON.stringify({ acao: "notificacoes", notificacoes }),
   });
 
-export const excluirConta = (senha) =>
+export const excluirConta = (dados) =>
   chamar("/api/excluir-conta", {
     method: "POST",
-    body: JSON.stringify({ senha }),
+    body: JSON.stringify(dados),
   });
