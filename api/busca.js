@@ -1,12 +1,7 @@
 import { sql } from "../lib/db.js";
 import { metodos, responderErro } from "../lib/http.js";
 import { esquemaBusca, validar } from "../lib/validacao.js";
-import {
-  CATEGORIAS,
-  SINONIMOS,
-  categoriasDoTermo,
-  normalizar,
-} from "../lib/categorias.js";
+import { SINONIMOS, categoriasDoTermo, normalizar } from "../lib/categorias.js";
 
 // Valores fixos (vêm do enum validado), por isso é seguro montar o ORDER BY.
 const ORDENS = {
@@ -21,7 +16,7 @@ const escaparLike = (texto) => texto.replace(/[\\%_]/g, "\\$&");
 
 // Cada palavra digitada precisa casar com o nome do produto
 // (em português ou na tradução) ou com uma categoria.
-function condicoesDeTexto(texto, add) {
+function condicoesDeTexto(texto, add, categorias) {
   let tokens = normalizar(texto)
     .split(/\s+/)
     .filter((t) => t.length >= 3)
@@ -34,7 +29,7 @@ function condicoesDeTexto(texto, add) {
       (v) => `titulo ILIKE ${add(`%${escaparLike(v)}%`)}`
     );
 
-    const slugs = categoriasDoTermo(token);
+    const slugs = categoriasDoTermo(token, categorias);
     if (slugs.length) partes.push(`categoria IN (${slugs.map((s) => add(s)).join(", ")})`);
 
     return `(${partes.join(" OR ")})`;
@@ -50,6 +45,14 @@ export default async function handler(req, res) {
       req.query
     );
 
+    const categoriasBanco = await sql`
+      SELECT c.slug, c.nome, COUNT(p.id)::int AS total
+      FROM categorias c
+      LEFT JOIN produtos p ON p.categoria = c.slug
+      GROUP BY c.slug, c.nome, c.ordem
+      ORDER BY c.ordem, c.nome
+    `;
+
     const params = [];
     const add = (valor) => {
       params.push(valor);
@@ -57,25 +60,22 @@ export default async function handler(req, res) {
     };
 
     const condicoes = [];
-    if (q) condicoes.push(...condicoesDeTexto(q, add));
+    if (q) condicoes.push(...condicoesDeTexto(q, add, categoriasBanco));
     if (categoria) condicoes.push(`categoria = ${add(categoria)}`);
     if (precoMax) condicoes.push(`preco <= ${add(precoMax)}`);
     if (freteGratis === "1") condicoes.push("frete_gratis");
 
     const where = condicoes.length ? `WHERE ${condicoes.join(" AND ")}` : "";
 
-    const [linhas, contagens] = await Promise.all([
-      sql.query(
-        `SELECT id, titulo, imagem, preco, nota, vendidos,
-                frete_gratis AS "freteGratis"
-        FROM produtos
-        ${where}
-        ORDER BY ${ORDENS[ordem]}
-        LIMIT 60`,
-        params
-      ),
-      sql`SELECT categoria, COUNT(*)::int AS total FROM produtos GROUP BY categoria`,
-    ]);
+    const linhas = await sql.query(
+      `SELECT id, titulo, imagem, preco, nota, vendidos,
+              frete_gratis AS "freteGratis"
+      FROM produtos
+      ${where}
+      ORDER BY ${ORDENS[ordem]}
+      LIMIT 60`,
+      params
+    );
 
     const produtos = linhas.map((p) => ({
       ...p,
@@ -83,11 +83,8 @@ export default async function handler(req, res) {
       nota: Number(p.nota),
     }));
 
-    const categorias = CATEGORIAS.map((c) => ({
-      slug: c.slug,
-      nome: c.nome,
-      total: contagens.find((x) => x.categoria === c.slug)?.total ?? 0,
-    })).filter((c) => c.total > 0);
+    // Só mostra como filtro a categoria que tem produtos.
+    const categorias = categoriasBanco.filter((c) => c.total > 0);
 
     res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
     res.status(200).json({ produtos, total: produtos.length, categorias });

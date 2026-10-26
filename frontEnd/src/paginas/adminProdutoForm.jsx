@@ -3,8 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ShoppingCart, Zap } from "lucide-react";
 import { getProduto } from "../services/produtos.js";
 import { NaoAutenticado } from "../services/carrinho.js";
-import { atualizarProduto, criarProduto } from "../services/admin.js";
-import { CATEGORIAS } from "../utils/categorias.js";
+import { atualizarProduto, criarProduto, listarCategoriasAdmin } from "../services/admin.js";
 import { DetalheProduto } from "../reutilizavel/detalheProduto.jsx";
 import { Interruptor, SecaoConfig } from "../reutilizavel/secaoConfig.jsx";
 import "./admin.css";
@@ -26,11 +25,26 @@ export function AdminProdutoForm() {
   const navegar = useNavigate();
 
   const [campos, setCampos] = useState(CAMPOS_INICIAIS);
+  const [categorias, setCategorias] = useState([]);
   const [extra, setExtra] = useState({ nota: 0, vendidos: 0, avaliacoes: [], total: 0 });
   const [carregando, setCarregando] = useState(editando);
   const [erroCarga, setErroCarga] = useState("");
   const [salvando, setSalvando] = useState(false);
   const [mensagem, setMensagem] = useState(VAZIA);
+
+  useEffect(() => {
+    let cancelado = false;
+
+    listarCategoriasAdmin()
+      .then((dados) => {
+        if (!cancelado) setCategorias(dados.categorias);
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelado = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!editando) return;
@@ -84,6 +98,11 @@ export function AdminProdutoForm() {
     vendidos: extra.vendidos,
     freteGratis: campos.freteGratis,
   };
+
+  // Enquanto a lista não chega, mostra só a categoria atual.
+  const opcoesCategoria = categorias.length
+    ? categorias
+    : [{ slug: campos.categoria, nome: "Carregando..." }];
 
   async function salvar(evento) {
     evento.preventDefault();
@@ -139,7 +158,7 @@ export function AdminProdutoForm() {
   }
 
   return (
-    <div>
+    <div className="adminPagina">
       <div className="adminTopo">
         <h2>{editando ? "Editar produto" : "Novo produto"}</h2>
         {editando && (
@@ -194,12 +213,15 @@ export function AdminProdutoForm() {
                 value={campos.categoria}
                 onChange={(e) => mudar("categoria", e.target.value)}
               >
-                {CATEGORIAS.map((c) => (
+                {opcoesCategoria.map((c) => (
                   <option key={c.slug} value={c.slug}>
                     {c.nome}
                   </option>
                 ))}
               </select>
+              <small>
+                Falta uma categoria? <Link to="/admin/categorias">Crie uma nova</Link>.
+              </small>
             </div>
 
             <div className="campo">

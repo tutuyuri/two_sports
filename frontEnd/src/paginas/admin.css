@@ -345,3 +345,31 @@ a.adminLink {
         grid-template-columns: 48px minmax(0, 1fr);
     }
 }
+
+/* ---------- Correção da largura (prévia e telas do painel) ---------- */
+
+.adminPagina,
+.adminPainel,
+.adminForm,
+.coresEditor {
+    width: 100%;
+}
+
+.adminForm__previa {
+    width: 100%;
+    min-width: 0;
+}
+
+.adminForm__previa .produto,
+.adminForm__previa .produto__info {
+    min-width: 0;
+}
+
+.adminForm__previa .produto__imagem img {
+    max-width: 100%;
+}
+
+.adminForm__previa .produto__info h2,
+.adminForm__previa .produto__descricao {
+    overflow-wrap: anywhere;
+}
