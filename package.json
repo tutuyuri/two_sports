@@ -14,7 +14,8 @@
     "db:login": "node --env-file=.env scripts/atualizar-login.js",
     "db:admin": "node --env-file=.env scripts/atualizar-admin.js",
     "admin:criar": "node --env-file=.env scripts/tornar-admin.js",
-    "db:categorias-tabela": "node --env-file=.env scripts/criar-categorias.js"
+    "db:categorias-tabela": "node --env-file=.env scripts/criar-categorias.js",
+    "db:avaliacoes-usuarios": "node --env-file=.env scripts/atualizar-avaliacoes.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",

@@ -34,6 +34,7 @@ const SECOES = [
       "Compras: itens do carrinho e dos pedidos, valores, forma de pagamento escolhida (apenas o nome da opção) e data.",
       "Entrega: o endereço que você informa no checkout (CEP, rua, número, complemento, bairro, cidade e UF).",
       "Preferências: suas escolhas de notificação (salvas na conta) e de tema e acessibilidade (salvas no seu navegador).",
+      "Avaliações: a nota, o comentário e a data das avaliações que você publicar. Na página do produto aparecem seu primeiro nome e a inicial do sobrenome.",
       "Dados técnicos: o cookie de login e informações como endereço IP, navegador e horário de acesso, que os serviços de hospedagem podem registrar para operar e proteger o site.",
     ],
     depois: [

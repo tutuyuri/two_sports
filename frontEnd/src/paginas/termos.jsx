@@ -74,7 +74,7 @@ const SECOES = [
     id: "conteudo",
     titulo: "Conteúdo de terceiros e avaliações",
     itens: [
-      "As avaliações exibidas nas páginas de produto são exemplos de uma base de testes, não opiniões de clientes reais.",
+      "Parte das avaliações exibidas nas páginas de produto são exemplos de uma base de testes. As demais foram escritas por clientes que fizeram um pedido (de demonstração) no site. Ao avaliar, você concorda em exibir seu primeiro nome, a inicial do sobrenome, sua nota e seu comentário, e se compromete a não publicar conteúdo ilegal, ofensivo ou que viole direitos de terceiros.",
       "Imagens e descrições dos produtos pertencem aos seus titulares ou fazem parte de bases públicas de teste, e podem conter erros ou estar em inglês.",
       "Links para outros sites (como o GitHub) levam a páginas fora do nosso controle, que têm regras próprias.",
     ],

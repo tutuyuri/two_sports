@@ -1,0 +1,118 @@
+/* ===================================================================== */
+/* FORMULÁRIO DE AVALIAÇÃO                                               */
+/* ===================================================================== */
+
+.formAvaliacao {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+
+    background-color: color-mix(in srgb, var(--cor-superficie) 92%, var(--cor-destaque) 8%);
+    border: 1px solid var(--cor-borda-divisoria);
+    border-radius: 12px;
+}
+
+.estrelasInput {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.estrelasInput legend {
+    margin-bottom: 6px;
+    padding: 0;
+    font-weight: 600;
+}
+
+.estrelasInput__produto {
+    display: block;
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.estrelasInput__lista {
+    display: flex;
+    gap: 4px;
+}
+
+.estrelasInput__estrela {
+    position: relative;
+    display: inline-flex;
+    padding: 4px;
+
+    color: var(--cor-texto-secundario);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.estrelasInput__estrela--ativa {
+    color: var(--cor-destaque);
+}
+
+.estrelasInput__estrela:hover {
+    transform: scale(1.1);
+}
+
+.estrelasInput__estrela input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.estrelasInput__estrela:has(input:focus-visible) {
+    outline: 2px solid var(--foco);
+    outline-offset: 2px;
+}
+
+.visualmenteOculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.formAvaliacao__campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.formAvaliacao__campo label {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.formAvaliacao__campo textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 10px 14px;
+
+    color: var(--cor-texto-input);
+    background-color: var(--cor-input);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    font: inherit;
+    resize: vertical;
+}
+
+.formAvaliacao__campo textarea:focus {
+    border-color: var(--cor-borda-focus);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-borda-focus) 30%, transparent);
+}
+
+.formAvaliacao__erro {
+    min-height: 1.2em;
+    margin: 0;
+    color: var(--cor-erro);
+    font-size: 0.9rem;
+    font-weight: 600;
+}

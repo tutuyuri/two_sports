@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     // Listar as compras do usuário logado (mais recentes primeiro)
     if (req.method === "GET") {
       const linhas = await sql`
-        SELECT p.id, p.subtotal, p.frete, p.total, p.pagamento, p.status,
+      SELECT p.id, p.subtotal, p.frete, p.total, p.pagamento, p.status,
               p.endereco, p.criado_em AS "criadoEm",
               COALESCE(
                 json_agg(
@@ -26,7 +26,9 @@ export default async function handler(req, res) {
                     'titulo', i.titulo,
                     'preco', i.preco_unitario,
                     'quantidade', i.quantidade,
-                    'imagem', pr.imagem
+                    'imagem', pr.imagem,
+                    'minhaNota', av.nota,
+                    'meuComentario', av.comentario
                   ) ORDER BY i.id
                 ) FILTER (WHERE i.id IS NOT NULL),
                 '[]'::json
@@ -34,6 +36,8 @@ export default async function handler(req, res) {
         FROM pedidos p
         LEFT JOIN pedido_itens i ON i.pedido_id = p.id
         LEFT JOIN produtos pr ON pr.id = i.produto_id
+        LEFT JOIN avaliacoes av
+              ON av.produto_id = i.produto_id AND av.usuario_id = p.usuario_id
         WHERE p.usuario_id = ${sessao.id}
         GROUP BY p.id
         ORDER BY p.criado_em DESC

@@ -68,10 +68,13 @@ export function DetalheProduto({ produto, avaliacoes, totalAvaliacoes, acoes }) 
             <li key={a.id} className="avaliacao">
               <div className="avaliacao__cabecalho">
                 <strong>{a.autor}</strong>
-                <span>{new Date(a.criadoEm).toLocaleDateString("pt-BR")}</span>
+                <span>
+                  {new Date(a.criadoEm).toLocaleDateString("pt-BR")}
+                  {a.atualizadoEm ? " · editada" : ""}
+                </span>
               </div>
               <Estrelas nota={a.nota} tamanho={14} />
-              <p>{a.comentario}</p>
+              {a.comentario && <p>{a.comentario}</p>}
             </li>
           ))}
         </ul>

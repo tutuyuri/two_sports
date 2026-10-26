@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { PackageOpen } from "lucide-react";
+import { PackageOpen, Pencil, Star } from "lucide-react";
 import { getPedidos, NaoAutenticado } from "../services/carrinho.js";
+import { Estrelas } from "../reutilizavel/detalheProduto.jsx";
+import { FormAvaliacao } from "../reutilizavel/formAvaliacao.jsx";
 import { moeda } from "../utils/moeda.js";
+import "../reutilizavel/configuracoes.css";
 import "./compras.css";
 import "./minhasCompras.css";
 
@@ -17,6 +20,10 @@ export function MinhasCompras() {
   const [pedidos, setPedidos] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
+  const [abertoId, setAbertoId] = useState(null); // formulário de avaliação aberto
+
+  const irParaLogin = () =>
+    navegar("/login", { state: { voltarPara: "/minhas-compras" } });
 
   useEffect(() => {
     let cancelado = false;
@@ -41,6 +48,21 @@ export function MinhasCompras() {
       cancelado = true;
     };
   }, [navegar]);
+
+  // A avaliação vale para o produto: atualiza todas as compras dele.
+  function aoAvaliar(produtoId, nota, comentario) {
+    setPedidos((atuais) =>
+      atuais.map((pedido) => ({
+        ...pedido,
+        itens: pedido.itens.map((item) =>
+          item.produtoId === produtoId
+            ? { ...item, minhaNota: nota, meuComentario: comentario }
+            : item
+        ),
+      }))
+    );
+    setAbertoId(null);
+  }
 
   if (carregando) return <p>Carregando suas compras...</p>;
   if (!pedidos) return <p className="compras__erro">{erro}</p>;
@@ -85,26 +107,69 @@ export function MinhasCompras() {
             </header>
 
             <ul className="pedido__itens">
-              {pedido.itens.map((item) => (
-                <li key={item.id} className="pedidoItem">
-                  <div className="pedidoItem__imagem">
-                    {item.imagem && <img src={item.imagem} alt={item.titulo} />}
-                  </div>
+              {pedido.itens.map((item) => {
+                const chave = `${pedido.id}-${item.id}`;
+                const avaliado = item.minhaNota != null;
+                const aberto = abertoId === chave;
 
-                  <div className="pedidoItem__info">
-                    {item.produtoId ? (
-                      <Link to={`/produtos/${item.produtoId}`}>{item.titulo}</Link>
-                    ) : (
-                      <span>{item.titulo}</span>
+                return (
+                  <li key={item.id} className="pedidoItem">
+                    <div className="pedidoItem__imagem">
+                      {item.imagem && <img src={item.imagem} alt={item.titulo} />}
+                    </div>
+
+                    <div className="pedidoItem__info">
+                      {item.produtoId ? (
+                        <Link to={`/produtos/${item.produtoId}`}>{item.titulo}</Link>
+                      ) : (
+                        <span>{item.titulo}</span>
+                      )}
+                      <span className="pedidoItem__detalhe">
+                        {item.quantidade}× {moeda.format(item.preco)}
+                      </span>
+
+                      {item.produtoId && (
+                        <div className="pedidoItem__avaliacao">
+                          {avaliado && (
+                            <span className="pedidoItem__nota">
+                              <Estrelas nota={item.minhaNota} tamanho={14} />
+                              Sua avaliação
+                            </span>
+                          )}
+                          <button
+                            type="button"
+                            className="botaoConfig pedidoItem__botao"
+                            aria-expanded={aberto}
+                            onClick={() => setAbertoId(aberto ? null : chave)}
+                          >
+                            {avaliado ? <Pencil size={14} /> : <Star size={14} />}
+                            {avaliado ? "Editar avaliação" : "Avaliar"}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    <strong>{moeda.format(item.preco * item.quantidade)}</strong>
+
+                    {aberto && (
+                      <div className="pedidoItem__form">
+                        <FormAvaliacao
+                          produtoId={item.produtoId}
+                          titulo={item.titulo}
+                          notaInicial={item.minhaNota ?? 0}
+                          comentarioInicial={item.meuComentario ?? ""}
+                          editando={avaliado}
+                          aoSalvar={(nota, comentario) =>
+                            aoAvaliar(item.produtoId, nota, comentario)
+                          }
+                          aoCancelar={() => setAbertoId(null)}
+                          aoExpirar={irParaLogin}
+                        />
+                      </div>
                     )}
-                    <span className="pedidoItem__detalhe">
-                      {item.quantidade}× {moeda.format(item.preco)}
-                    </span>
-                  </div>
-
-                  <strong>{moeda.format(item.preco * item.quantidade)}</strong>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
 
             <footer className="pedido__rodape">

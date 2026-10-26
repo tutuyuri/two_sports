@@ -313,7 +313,7 @@ export function SecaoExcluirConta({ conta, aoExpirar }) {
         <form className="configForm" onSubmit={enviar} noValidate>
           <p className="configAviso">
             Esta ação <strong>não pode ser desfeita</strong>. Serão apagados seu
-            perfil, seu carrinho e todo o seu histórico de compras.
+            perfil, seu carrinho, suas avaliações e todo o seu histórico de compras.
           </p>
 
           {conta.temSenha ? (
