@@ -20,7 +20,8 @@ export default async function handler(req, res) {
 
     const [avaliacoes, [{ total }]] = await Promise.all([
       sql`
-        SELECT id, autor, nota, comentario, criado_em AS "criadoEm"
+        SELECT id, autor, nota, comentario,
+        criado_em AS "criadoEm", atualizado_em AS "atualizadoEm"
         FROM avaliacoes
         WHERE produto_id = ${id}
         ORDER BY criado_em DESC

@@ -185,3 +185,34 @@
         width: 100%;
     }
 }
+
+/* ---------- Avaliar produtos comprados ---------- */
+
+.pedidoItem__avaliacao {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.pedidoItem__nota {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+}
+
+.pedidoItem__botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 14px;
+    font-size: 0.85rem;
+}
+
+.pedidoItem__form {
+    grid-column: 1 / -1;
+}
