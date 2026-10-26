@@ -118,7 +118,7 @@ export function AdminCores() {
   ];
 
   return (
-    <div>
+    <div className="adminPagina">
       <div className="adminTopo">
         <h2>Cores do app</h2>
       </div>

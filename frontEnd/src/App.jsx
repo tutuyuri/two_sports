@@ -21,6 +21,7 @@ import { AdminProdutos } from './paginas/adminProdutos.jsx';
 import { AdminProdutoForm } from './paginas/adminProdutoForm.jsx';
 import { AdminCores } from './paginas/adminCores.jsx';
 import { AdminAdmins } from './paginas/adminAdmins.jsx';
+import { AdminCategorias } from './paginas/adminCategorias.jsx';
 
 
 function Layout() {
@@ -85,6 +86,7 @@ function App() {
             <Route path="admin/produtos/:id" element={<RotaAdmin><AdminProdutoForm /></RotaAdmin>} />
             <Route path="admin/cores" element={<RotaAdmin><AdminCores /></RotaAdmin>} />
             <Route path="admin/administradores" element={<RotaAdmin><AdminAdmins /></RotaAdmin>} />
+            <Route path="admin/categorias" element={<RotaAdmin><AdminCategorias /></RotaAdmin>} />
           </Route>
         </Routes>
       </BrowserRouter>

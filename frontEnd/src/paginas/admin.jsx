@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Package, Palette, ShieldCheck } from "lucide-react";
+import { Package, Palette, ShieldCheck, Tags } from "lucide-react";
 import "./admin.css";
 
 export function Admin() {
@@ -10,6 +10,13 @@ export function Admin() {
           <Package size={32} />
           <strong>Produtos</strong>
           <span>Adicionar e editar itens, com prévia ao vivo da página de venda.</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/admin/categorias">
+          <Tags size={32} />
+          <strong>Categorias</strong>
+          <span>Criar novas categorias para organizar os produtos da loja.</span>
         </Link>
       </li>
       <li>

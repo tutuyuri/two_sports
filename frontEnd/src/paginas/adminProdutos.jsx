@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { listarProdutosAdmin } from "../services/admin.js";
-import { CATEGORIAS } from "../utils/categorias.js";
 import { moeda } from "../utils/moeda.js";
 import "../reutilizavel/configuracoes.css";
 import "./admin.css";
@@ -32,7 +31,7 @@ export function AdminProdutos() {
   );
 
   return (
-    <div>
+    <div className="adminPagina">
       <div className="adminTopo">
         <h2>Produtos</h2>
         <Link to="/admin/produtos/novo" className="botaoConfig botaoConfig--principal adminLink">
@@ -64,7 +63,7 @@ export function AdminProdutos() {
                 <div>
                   <div className="adminItem__titulo">{p.titulo}</div>
                   <div className="adminItem__meta">
-                    {CATEGORIAS.find((c) => c.slug === p.categoria)?.nome ?? p.categoria}
+                    {p.categoriaNome ?? p.categoria}
                     {p.freteGratis ? " · Frete grátis" : ""}
                   </div>
                 </div>

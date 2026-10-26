@@ -53,7 +53,7 @@ export function AdminAdmins() {
   }
 
   return (
-    <div>
+    <div className="adminPagina">
       <div className="adminTopo">
         <h2>Administradores</h2>
       </div>

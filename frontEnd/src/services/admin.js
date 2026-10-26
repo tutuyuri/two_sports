@@ -18,3 +18,8 @@ export const removerAdmin = (id) =>
 
 export const getTema = () => chamar("/api/tema");
 export const salvarTema = (modo, cores) => enviar("/api/admin/tema", "PUT", { modo, cores });
+
+export const listarCategoriasAdmin = () => chamar("/api/admin/categorias");
+export const criarCategoria = (nome) => enviar("/api/admin/categorias", "POST", { nome });
+export const excluirCategoria = (slug) =>
+  enviar(`/api/admin/categorias?slug=${encodeURIComponent(slug)}`, "DELETE");
